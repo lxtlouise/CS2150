@@ -1,0 +1,24 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Assignment 3}
+\author{Xiaoting Li (xil139)}
+\date{}
+
+\begin{document}
+
+\maketitle
+\noindent
+\textbf{5. Problem 26-6 from the CLRS text.} \\
+\noindent
+Answer: \\
+(a) If M is a matching and P is an augmenting path with respect to M, it means that there are $k$ edges in M and there $k + 1$ edges not in M. Since we are calculating the symmetric difference between M and P, it is easy for us to learn that there are $2k + 1$ edges in $M\cup P$ and there are $k$ edges in $M\cap P$. Therefore, we can get $$|M \oplus P| = |M\cup P| - |M\cap P| = |M| + 2k + 1 - 2k = |M| + 1$$ And we can get $$M \oplus (P_1\cup P_2 \cup ... \cup P_k )  = |M\cup P_1\cup P2\cup ... \cup P_k| - |M\cap P1\cap P_2\cap ... \cap P_k| = $$ $$|M|\cup |P_1|\cup |P_2|\cup ... \cup |P_k| -  |M\cap P1\cap P_2\cap ... \cap P_k| = $$ $$|M| + (2k_1 + 1) + (2k_2 + 1) + ... + (2k_k + 1) - (2k_1 + 2k_2 + ... + 2k_k) = $$ $$|M| + k$$ \\
+(b) Since $G^{'} = (V, M\oplus M^{*})$, at least 2 of the edges come from the same matching if each vertex has more than 3 degrees. However, this contradicts with the definition of matching. No two edges in a matching have a common vertex. Therefore, every vertex in $G^{'}$ has at most 2 degrees. Since every vertex in $G^{'}$ has at most 2 degrees, it means there is no path in the graph that has repeated vertices. Therefore, $G^{'}$ is a disjoint union of simple paths and cycles. Since two edges with the same vertex cannot appear in the same matching and $G^{'} = (V, M\oplus M^{*})$, so edges in each such path or cycle belong alternately to $M$ or $M^{*}$. Since $|M| < |M^{*}|$ and we've already known that edges in $G^{'}$ are alternated between $M$ and $M^{*}$, it means a path that contains one more edge of $M^{*}$ than $M$ is an augmenting path for $M$. Therefore, $M\oplus M^{*}$ contains at least $|M| - |M^{*}|$ vertex-disjoint augmenting paths with respect to $M$.\\ \newline
+(c) Since $P$ is the shortest augmenting path with respect to $M^{'}$ and $M^{'} = M\oplus (P_1\cup P_2\cup ... \cup P_k)$, it means that any edge of $P$ that is not in $M^{'}$ cannot be in $M$, any edge of $P$ that is in $M^{'}$ must be in $M$. We also know that $P$ has edges alternate between $M^{'}$ and $E^{'} - M^{'}$ and both of the endpoints of $M^{'}$ are not in $M$. So we can tell that $P$ is also an augmenting path with respect to $M$ and $P$ must be at least of length $l$. Since $P_1, P_2, ... ,P_k$ is a maximum set of vertex-disjoint augmenting paths of length $l$ and $P$ is vertex-disjoint with $P_1\cup P_2\cup ... \cup P_k$ , if $P$ also has the length of $l$, then it is a contradiction. Therefore, $P$ has more than $l$ edges. \\ \newline
+(d) Any edge in $M\oplus M^{'}$ is either in $M$ or $M^{'}$. Since $M^{'} = M\oplus (P_1\cup P_2\cup ... \cup P_k)$, it means that any edge in $M^{'}$ is either in $M$ or $P_1\cup P_2\cup ... \cup P_k$. So the symmetric difference between $M$ and $M^{'}$ is $P_1\cup P_2\cup ... \cup P_k$. And $A = M\oplus M^{'}\oplus P$. Therefore, $A = (P_1\cup P_2\cup ... \cup P_k)\oplus P$.  So we can say $|M^{'}\oplus (P_1\cup P_2\cup ... \cup P_k)| - |M| = k + 1$, which means there are $k + 1$ more edges from $M^{'}\oplus (P_1\cup P_2\cup ... \cup P_k)$ than from $M$. Since the length of an augmenting path is at least $l$, so we can conclude that $|A| \geq (k + 1)l$. \\\newline
+(e) We know that the shortest augmenting path with respect to $M$ has $l$ edges. This means that each shortest augmenting path with respect to $M$ contains at least $l + 1$ vertices. Also, from (b) we learn that $M\oplus M^{*}$ contains at least $|M| - |M^{*}|$ vertex-disjoint augmenting paths with respect to $M$. So $M^{*}$ has at most $|V|/(l + 1)$ augmenting path more than $M$. Therefore, the size of the maximum matching is at most $|M| + |V|/(l + 1)$.\\ \newline
+(f) From (e) we learn that the size of the maximum matching is at most $|M| + |V|/(l + 1)$. Let $M^{*}$ be the maximum matching and $M$ be the matching after $\sqrt{|V|}$ iterations. So the shortest augmenting path must be at least $\sqrt{|V|}$. Since we have $|M^{*}| - |M| \leq |V|/(l + 1)$, we can get $|M^{*}| - |M| \leq |V|/(\sqrt{|V|} + 1) \leq \sqrt{|V|}$. It means after $\sqrt{|V|}$ iterations, the algorithm can grow no more than $\sqrt{|V|}$. So we can conclude that the number of repeat loop iterations in the algorithm is at most $2\sqrt{|V|}$. \\ \newline
+(g) Modify the graph by adding source vertex s, sink vertex t, directed edges between s and free vertices in $L$, and directed edges between free vertices in $R$ and t. Run BFS on the modified graph to get a shortest path between s and t. This takes $O(E)$ time, which means each iteration takes $O(E)$ time. From (f) we learn that the number of repeat loop iterations in the algorithm is at most $2\sqrt{|V|}$. So we can conclude that the total running time of HOPCROFT-KARP is $O(\sqrt{|V|}E)$. \\
+
+
+\end{document}
