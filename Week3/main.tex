@@ -12,7 +12,9 @@
 Answer: \\
 (a) The capacity of a cut from G is less or equal to the sum of capacity of all edges, and for each edge the max capacity is less or equal to C, so the cut is less or equal to all the edges with C capacity, which is C $|$ E $|$.\\
 \newline
-(b) Since the capacity of an augmenting path is the min capacity of all the edges in the path, so the path should have all the edges with at least K capacity. We could modify the graph G by removing all the edges that has less capacity than K (which is $O(E)$), and do a depth first search to find the first path (which is $O(V+E)$) to find the path. And the total time complexity would be $O(V+E)$, which is $O(E)$. 
+(b) Since the capacity of an augmenting path is the min capacity of all the edges in the path, so the path should have all the edges with at least K capacity. We could modify the graph G by removing all the edges that has less capacity than K (which is $O(E)$), and do a depth first search to find the first path (which is $O(V+E)$) to find the path. And the total time complexity would be $O(V+E)$, which is $O(E)$.  \\
+\newline
+(c) According to the Theorem 26.6, $f$ is a max flow in G is equivalent to the residual network G contains no augmenting paths. In line 4, when the algorithm terminates, there is no augmenting path ($K$ must be less than 1, and since capacity is integer, it means $k$ = 0).
 \newline
 
 
