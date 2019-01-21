@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Assignment 4}
+\author{Xiaoting Li (xil139)}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{7. For each of the next 4 algorithms, state whether the algorithm is a polynomial time algorithm, whether the algorithm is a pseudo-polynomial time algorithm, and whether the algorithm is a strongly polynomial time algorithm. Justify your answers.} \\ \newline
+Answer: Assume $x_1, x_2, ..., x_n$ are m-bit positive integers. \\
+(a) Since we assume $x_1, x_2, ..., x_n$ are m-bit positive integers, it means that we need to multiply each pair of m-bit positive numbers in two for-loops. The time complexity for multiplication is $O(m^{2})$. And since there are two for-loops, so the run-time is $O(n^{2}\cdot m{^2})$. This is polynomial time algorithm since it has nothing to do with the actual numeric value of the input. It only relates to the size of input.\\
+(b) Since the second loop is determined by the value of $x_i$ and we assume $x_1, x_2, ..., x_n$ are m-bit positive integers, so the run-time for this question is $O(n\cdot 2^{m}\cdot m{^2})$. This is a pseudo-polynomial time algorithm. Since the run-time is related with the numeric value of the input number. If we use unary coding, then this algorithm can be considered as polynomial time. \\
+(c) \\
+(d) \\ \newline
+
+\noindent
+\textbf{}
+
+\end{document}
