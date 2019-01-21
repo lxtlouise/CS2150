@@ -1,0 +1,12 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\begin{document}
+\noindent \textbf{4. Problem 26-5 from the CLRS text.} \\
+\noindent
+\newline
+(e) We know that before we enter the while loop of lines 5-6 (when line 4 is executed), there is a minimum cut with capacity $2K|E|$ at most. Each time the while loop of lines 5-6 is executed, we increase the flow in $G$ by at least $K$ as the augmenting path we find in each iteration has capacity at least $K$. The maximum amount of flow that we can get is $2K|E|$ as the value of any flow $f$ in a flow network $G$ is bounded from above by the capacity of any cut of $G$ (Corollary 26.5 from textbook). Therefore, this while loop can have $2K|E| / K = 2|E|$ iterations at most. This gives us the upper bound $O(E)$
+\newline 
+\\
+(f) Since $K = 2^{lgC}$ in the beginning we can say $K$ is bounded above by $C$. The outer while loop will be executed $O(lgC)$ times as $K$ is halved in each iteration. We already know from section (e) the inner while loop will be executed $O(E)$ times and we know from section (b) that finding an augmenting path $p$ with capacity at least $K$ will take $O(E)$ time. So the algorithm will run in $O(E^2lgC)$ time in total.
+
+\end{document}
