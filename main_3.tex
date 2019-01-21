@@ -18,6 +18,8 @@ Answer: \\
 \newline
 (d) At line 5, there is no edge that has larger capacity than $k$, same reason as (a), the min cut of $G$ will be less than $K |E|$. And after line 7, $K = K/2$, when roll up to line 4, the min cut of $G$ will be less than $2K |E|$.\\
 \newline
+(e) During iteration $i$, according to (d), the max flow of the residual network would be $2K |E|$, and in next iteration $i+1$, the min flow of the residual network would be 0. So in iteration $i$, the residual flow could be reduced by  $2K |E|$ at most, given the augmenting path is at least $K$, the max iteration for line 5-6 would be $2K |E| / K =2 |E| $.\\
+\newline
 
 \maketitle
 \noindent
