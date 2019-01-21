@@ -20,6 +20,8 @@ Answer: \\
 \newline
 (e) During iteration $i$, according to (d), the max flow of the residual network would be $2K |E|$, and in next iteration $i+1$, the min flow of the residual network would be 0. So in iteration $i$, the residual flow could be reduced by  $2K |E|$ at most, given the augmenting path is at least $K$, the max iteration for line 5-6 would be $2K |E| / K =2 |E| $.\\
 \newline
+(f) $K$ half each time, so in all the iteration would be executed $lg C$ time, and in each iteration line 5-6 execute $O(E)$ times (proved by e.) with each time $O(E)$ complexity. So in all, the time complexity is $O(E^2lg C)$.\\
+\newline
 
 \maketitle
 \noindent
