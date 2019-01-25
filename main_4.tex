@@ -20,4 +20,16 @@ Answer: Assume $x_1, x_2, ..., x_n$ are m-bit positive integers. \\
 \noindent
 \textbf{}
 
+\noindent
+\textbf{8. Problem 16.4-4 from CLRS.} \\ \newline
+Answer: In order to show, $(S,I)$ is a matroid, we need to show that hereditary property and exchange property hold for elements in $I$. \\
+1. Hereditary Property \\ 
+Ley $X$ and $Y$ be two sets such that $X \in I$ and $Y \subset X$. From the definition of $I$, $X \cap S_i \leq 1$ for $i = 1, 2, ....., k$. If $Y \subset X$ then, $(Y \cap S_i) \in (X \cap S_i)$, so, $(Y \cap S_i) \leq (X \cap S_i) \leq 1$ for all $i$. Then we can say $Y \in I$ since the definition for $I$ holds for $Y$ too. So, the hereditary property holds. \\
+2. Exchange Property \\
+Let $X$ and $Y$ be two sets such that $X \in I$, $Y \in I$ and $|X| < |Y|$. In order to show that the exchange property holds, we need to show for some $x \in Y \setminus X$, $X \cup \{x\} \in I$.\\
+ Assume $|Y \cap S_i| = 1$ and $Y \cap S_i = x$ and $X \cap S_i = \emptyset$ for some $i$. Then, $(X \cup \{x\}) \cap S_i = x$. And for any $j \neq i$, $(X \cup \{x\}) \cap S_j = (X \cap S_j)$. So, now we have $(X \cup \{x\}) \cap S_n \leq 1$ for all $n = 1, 2, ....., k$. Then, we can say  $(X \cup \{x\}) \in I$ and so, the exchange property holds.\\
+Since the two properties hold, we can say $(S, I)$ is a matroid.
+\noindent
+\textbf{}
+
 \end{document}
