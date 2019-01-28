@@ -30,6 +30,11 @@ Let $X$ and $Y$ be two sets such that $X \in I$, $Y \in I$ and $|X| < |Y|$. In o
 Since the two properties hold, we can say $(S, I)$ is a matroid. \\ \newline
 
 \noindent
+\textbf{9. Problem 16.4-5 from CLRS.} \\ \newline
+Suppose $A$ is the minimum-weight maximal independent subset of $w(x)$, let's define another weight function: $w_2(x) = Max - w(x) + 1$ where Max is the max weight of $w(x)$. It is obvious that all $w_2(x)$ have positive value. Suppose  $B$ is the maximum-weight maximal independent subset of $w_2(x)$. If $w(A) != w(B)$, then: 1. since $A$ is the min of  $w(x)$, so $w(A) < w(B)$. 2. since $B$ is the max of  $w_2(x)$, so $w_2(B) > w_2(A)$. 3. for 2., replace both side with $w_2(x) = Max - w(x) + 1$, since "All max independent subsets have the same size", then $ (Max+1)*size - w(B) >  (Max+1)*size - w(A)$ which lead to $w(A) > w(B)$ which contradict with 1. So $w(A) = w(B)$, which means finding the min of $w(x)$ is the same as finding the max of  $w_2(x)$.
+\newline
+ 
+\noindent
 \textbf{10. Problem 16-4 part a.} \\ \newline
 \noindent
 Answer: \\ \newline
