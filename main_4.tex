@@ -10,12 +10,14 @@
 \maketitle
 
 \noindent
-\\textbf{7. For each of the next 4 algorithms, state whether the algorithm is a polynomial time algorithm, whether the algorithm is a pseudo-polynomial time algorithm, and whether the algorithm is a strongly polynomial time algorithm. Justify your answers.} \\ \newline
+\textbf{7. For each of the next 4 algorithms, state whether the algorithm is a polynomial time algorithm, whether the algorithm is a pseudo-polynomial time algorithm, and whether the algorithm is a strongly polynomial time algorithm. Justify your answers.} \\ \newline
 Answer: Assume $x_1, x_2, ..., x_n$ are m-bit integers. \\
 (a) Since we assume $x_1, x_2, ..., x_n$ are m-bit positive integers, it means that we need to multiply each pair of m-bit positive numbers in two for-loops. The time complexity for multiplication is $O(m^{2})$. And since there are two for-loops, so the run-time is $O(n^{2}\cdot m{^2})$. This is polynomial time algorithm since it meets the definition of polynomial time when we consider the size of input instead of the numeric value of each input.\\
 (b) Since the second loop is determined by the value of $x_i$ and we assume $x_1, x_2, ..., x_n$ are m-bit positive integers, so the run-time for this question is $O(n\cdot 2^{m}\cdot m{^2})$. This is a pseudo-polynomial time algorithm. Since the run-time is related with the numeric value of the input number. If we use unary coding or if we only consider the numeric value of the input instead of the size of the input, then this algorithm can be considered as polynomial time. \\
 (c) The run-time of this one is $O(n\cdot m^{3})$. Since we assume each input is an $m$-bit integer, so $\log{x_i}$ is m. It is polynomial time. When we consider the size of input, it meets the definition of polynomial time.\\
-(d) The run-time of this one is $O(n^{2})$. It is polynomial time as well as strong polynomial time. It has nothing do with the numeric value of input. It only relates to the number of loops.\\ \newline
+(d) The run-time of this one is $O(n^{2})$. It is polynomial time as well as strong polynomial time. It has nothing do with the numeric value of input. It only relates to the number of loops.\\
+(e) From the loop, we know the final value of y would be $y = y^2^n^2$, if we do this computation directly, it would be strong-poly time regardless of input size. However, if we go inside the nested loop, the time complicity of performing $y = y*y$ computation would be $O(2^{m}\cdot2^{m})$ suppose n is a m-bit positive integer, then it would be pseudo-poly time.
+\\  \newline
 
 \noindent
 \textbf{8. Problem 16.4-4 from CLRS.} \\ \newline
@@ -27,6 +29,11 @@ Let $X$ and $Y$ be two sets such that $X \in I$, $Y \in I$ and $|X| < |Y|$. In o
  Assume $|Y \cap S_i| = 1$ and $Y \cap S_i = x$ and $X \cap S_i = \emptyset$ for some $i$. Then, $(X \cup \{x\}) \cap S_i = x$. And for any $j \neq i$, $(X \cup \{x\}) \cap S_j = (X \cap S_j)$. So, now we have $(X \cup \{x\}) \cap S_n \leq 1$ for all $n = 1, 2, ....., k$. Then, we can say  $(X \cup \{x\}) \in I$ and so, the exchange property holds.\\
 Since the two properties hold, we can say $(S, I)$ is a matroid. \\ \newline
 
+\noindent
+\textbf{9. Problem 16.4-5 from CLRS.} \\ \newline
+Suppose $A$ is the minimum-weight maximal independent subset of $w(x)$, let's define another weight function: $w_2(x) = Max - w(x) + 1$ where Max is the max weight of $w(x)$. It is obvious that all $w_2(x)$ have positive value. Suppose  $B$ is the maximum-weight maximal independent subset of $w_2(x)$. If $w(A) != w(B)$, then: 1. since $A$ is the min of  $w(x)$, so $w(A) < w(B)$. 2. since $B$ is the max of  $w_2(x)$, so $w_2(B) > w_2(A)$. 3. for 2., replace both side with $w_2(x) = Max - w(x) + 1$, since "All max independent subsets have the same size", then $ (Max+1)*size - w(B) >  (Max+1)*size - w(A)$ which lead to $w(A) > w(B)$ which contradict with 1. So $w(A) = w(B)$, which means finding the min of $w(x)$ is the same as finding the max of  $w_2(x)$.
+\newline
+ 
 \noindent
 \textbf{10. Problem 16-4 part a.} \\ \newline
 \noindent
