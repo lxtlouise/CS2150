@@ -16,4 +16,9 @@ Deniz Unal (des2014)}
 \noindent
 Answer: We can reduce this problem to max flow problem. The max flow we need is the maximum matching in a bipartite graph. So we can further reduce this problem to looking for a maximum matching in a bipartite graph using matroid intersection. If we introduce an artificial 'super source' vertex $x$ into our original graph and connect it to each original source vertex $s \in S$ with  directed edges with infinite capacity. We represent each source vertex $s \in S$ with two vertices $s_{in}$ and $s_{out}$. Every incoming edge to $s$ would be coming to $s_{in}$  and every outgoing edge from $s$ would be going from $s_{out}$. And we would connect $s_{in}$ and $s_{out}$ with an edge with capacity equal to weight/profit of $S$. We rewrite the problem using matroid representation, $I_{1} = \{F\subset E | \forall s_{in} \in S_1: |F \cap \delta(s_{in})\leq 1\}$. $I_{2} = \{F\subset E | \forall s_{out} \in S_2: |F \cap \delta(s_{out})\leq 1\}$. $S_1\cup S_2$ are the vertices in $S$ and the intersection $I_{1}\cup I_{2}$ is the set of the matching. And in this problem, what we need to do is find a maximum matching.We can run Edmonds-Karp implementation of Ford Fulkerson method to find the max flow from our artificial source $x$ to the designated sink $t$, since the maximum flow would be equal to maximum matching.
 
+
+\noindent
+\textbf{13.}\\ \newline
+\noindent
+Answer: The solution coulde be from the source collection S, pick as many number of subset of S such that those subset of S could be connected to sink with the largest time limit that is less or equal than L. And then do this pick up procedure iteratively, so that at the end, we found for each $i \subset [1,L]$. Since the graph have limited number of S, the time for each of the step is poly-time.
 \end{document}
