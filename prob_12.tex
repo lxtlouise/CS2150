@@ -1,0 +1,19 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Assignment }
+\author{Xiaoting Li (xil139) \\
+Ziyu Zhang (ziz41) \\
+Deniz Unal (des2014)}
+\date{January 30, 2019}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{12. Consider the following problem. The input consists of a directed graph $G = (V, E)$, a designated sink vertex $t \in V$ , a collection $S \subset V$ of source vertices, and a profit $p_v$ for each vertex $v \in S$. A feasible solution is a subset $T$ of $S$ such that there exists a collection of vertex disjoint paths from the elements of $T$ to $t$ in $G$. The objective is to maximize the aggregate profit of the elements of $T$. So think about the following application: the set $S$ is clients, the profits are how much each client is willing to pay for connectivity, and the graph is a computer network that can only support one connection per router, and the goal is to make as much profit as possible by selling collectivity. Give a polynomial time algorithm for this problem. Analyze the run time of the algorithm if it is implemented in a straight-forward way using known algorithms.} \\ \newline
+\noindent
+Answer: We can reduce this problem to max flow problem. If we introduce an artificial 'super source' vertex $x$ into our original graph and connect it to each original source vertex $s \in S$ with  directed edges with infinite capacity. We represent each source vertex $s \in S$ with two vertices $s_{in}$ and $s_{out}$. Every incoming edge to $s$ would be coming to $s_{in}$  and every outgoing edge from $s$ would be going from $s_{out}$. And we would connect $s_{in}$ and $s_{out}$ with an edge with capacity equal to weight/profit of $S$. We can run Edmonds-Karp implementation of Ford Fulkerson method to find the max flow from our artificial source $x$ to the designated sink $t$, since the maximum flow would be equal to maximum matching.
+
+\end{document}
