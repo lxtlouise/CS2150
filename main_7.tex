@@ -1,0 +1,17 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Assignment 6}
+\author{Xiaoting Li (xil139)}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{14. Prove Lemma 5.4 in http://people.cs.pitt.edu/~kirk/cs2150/matroid-intersect-notes.pdf} \\ \newline
+Answer:
+We can use induction and strong exchange property to prove this lemma. Let $M' = (E, {S'\in I: |S'| <= |S|})$. So $S$ and $T$ are bases of $M'$. If we take $x\in T\backslash S$, based on strong exchange property, there exists $y\in S\backslash T$ such that $S - y + x \in B$ and $T - x + y \in B$, $B$ is the set of bases of $M'$. It's easy to tell that $S - y + x$ and $T - x + y$ are both independent in $M$. Based on the definition of exchange graph, we have $(y, x)$ as an edge in $D_M(S)$. Then we can keep using induction by replacing $T$ using $T - x + y$, $|S\backslash T| = |S\backslash (T - x + y)| + 1$. Since $|S| = |T|$, in the end we can find all matching pairs in $D_M(S)$, which means we find a perfect matching. So we can conclude that if $S$ and $T$ are independent sets in M with $|S| = |T|$, then there exists a perfect matching between $S\backslash T$ and $T\backslash S$ in $D_M(S)$. 
+
+\end{document}
