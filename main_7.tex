@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{amsmath}
 
 \title{Assignment 6}
 \author{Xiaoting Li (xil139)}
@@ -12,6 +13,15 @@
 \noindent
 \textbf{14. Prove Lemma 5.4 in http://people.cs.pitt.edu/~kirk/cs2150/matroid-intersect-notes.pdf} \\ \newline
 Answer:
-We can use induction and strong exchange property to prove this lemma. Let $M' = (E, {S'\in I: |S'| <= |S|})$. So $S$ and $T$ are bases of $M'$. If we take $x\in T\backslash S$, based on strong exchange property, there exists $y\in S\backslash T$ such that $S - y + x \in B$ and $T - x + y \in B$, $B$ is the set of bases of $M'$. It's easy to tell that $S - y + x$ and $T - x + y$ are both independent in $M$. Based on the definition of exchange graph, we have $(y, x)$ as an edge in $D_M(S)$. Then we can keep using induction by replacing $T$ using $T - x + y$, $|S\backslash T| = |S\backslash (T - x + y)| + 1$. Since $|S| = |T|$, in the end we can find all matching pairs in $D_M(S)$, which means we find a perfect matching. So we can conclude that if $S$ and $T$ are independent sets in M with $|S| = |T|$, then there exists a perfect matching between $S\backslash T$ and $T\backslash S$ in $D_M(S)$. 
+We can use induction and strong exchange property to prove this lemma. Let $M' = (E, {S'\in I: |S'| <= |S|})$. So $S$ and $T$ are bases of $M'$. If we take $x\in T\backslash S$, based on strong exchange property, there exists $y\in S\backslash T$ such that $S - y + x \in B$ and $T - x + y \in B$, $B$ is the set of bases of $M'$. It's easy to tell that $S - y + x$ and $T - x + y$ are both independent in $M$. Based on the definition of exchange graph, we have $(y, x)$ as an edge in $D_M(S)$. Then we can keep using induction by replacing $T$ using $T - x + y$, $|S\backslash T| = |S\backslash (T - x + y)| + 1$. Since $|S| = |T|$, in the end we can find all matching pairs in $D_M(S)$, which means we find a perfect matching. So we can conclude that if $S$ and $T$ are independent sets in M with $|S| = |T|$, then there exists a perfect matching between $S\backslash T$ and $T\backslash S$ in $D_M(S)$. \\newline
+
+\noindent \textbf{15.  (a) Problem 29.2-6 from the CLRS text. So you want to given an integer linear
+programming formulation that models the bipartite matching problem.} \\ \newline
+Answer: For a given graph $G(V, E)$, in order to write a linear program  to solve maximum matching problem we need a variable $x_e$ for each edge $e \in E$. The intended meaning of $x_e$ is whether edge $e$ is in the matching or not. If $e$ is in the matching $x_e = 1$ and if it is not, $x_e = 0$. We would also need a constraint for each vertex $v \in V$ since a vertex in a graph can be in at most one matching. To write these as a linear programming formula we have: \\
+\begin{flalign*}
+\text{max } &\sum_{e \in E} x_e \qquad \text{s.t.} \\
+&\forall v \in V \sum_{e \, \text{adjacent to} \, v} x_e \leq 1 \\
+&\forall e \in E, \; x_e \in \{0, 1\}
+\end{flalign*}
 
 \end{document}
