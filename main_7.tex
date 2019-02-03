@@ -24,4 +24,11 @@ Answer: For a given graph $G(V, E)$, in order to write a linear program  to solv
 &\forall e \in E, \; x_e \in \{0, 1\}
 \end{flalign*}
 
+\noindent \textbf{15.  (b) Consider the relaxed linear program where the integrality requirements are dropped. Explain how to find an integer optimal solution from any rational optimal solution to this relaxed linear program} \\ \newline
+Answer: The problem is meaningful only if for each edge of $e$ is assoiated with a weight $w_e$. Same as (a),we need a variable $x_e$ for each edge $e \in E$. The intended meaning of $x_e$ is the percentage of edge $e$ that is used in the matching. Similarly, the linear programming formula is:
+\begin{flalign*}
+\text{max } &\sum_{e \in E} x_e*w_e \qquad \text{s.t.}\\
+&\forall v \in V \sum_{e \, \text{adjacent to} \, v} x_e \leq 1 \\
+&\forall e \in E, \; x_e \geq 0
+\end{flalign*}
 \end{document}
