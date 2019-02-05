@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Assignment 8}
+\author{Xiaoting Li (xil139) \\
+Ziyu Zhang (ziz41) \\
+Deniz Unal (des2014)}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{16. (a) Problem 29.2-7 from the CLRS text.} \\ \newline
+\noindent
+Answer: The goal of this problem is to minimize $\sum_{u, v \in V} a(u, v)f_{uv}$. The constraints of the problem are: \\
+(1) $f_{uv} \leq c(u, v)$\\
+(2) flow-conservation: 
+$\sum_{v\in V}f_{iuv} = \sum_{v\in V}f_{ivu}$, for each $u \in V - (s, t)$ and for each $i = 1, 2,.., k$\\
+(3) capacity-conservation: 
+$\sum_{i=1}^{k}f_{iuv} \leq c(u, v)$, for each $u, v \in V$\\
+(4) $\sum_{v\in V}f_{isv} - \sum_{v\in V}f_{ivs} = d_{i}$, for each $i = 1, 2,.., k$\\
+(5) $f_{iuv} \geq 0$, for each $u, v \in V$ and for each $i = 1, 2,.., k$\\
+(6) $f_{uv} = \sum_{i=1}^{k}f_{iuv}$ \\
+
+\noindent
+\textbf{16. (b) Give an example of an instance where the optimal objective value to the (rational) linear program is less than the optimal objective value for the integer linear program.}
+
+\end{document}
