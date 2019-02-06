@@ -1,5 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{ {./} }
 
 \title{Assignment 8}
 \author{Xiaoting Li (xil139) \\
@@ -15,16 +17,19 @@ Deniz Unal (des2014)}
 \textbf{16. (a) Problem 29.2-7 from the CLRS text.} \\ \newline
 \noindent
 Answer: The goal of this problem is to minimize $\sum_{u, v \in V} a(u, v)f_{uv}$. The constraints of the problem are: \\
-(1) $f_{uv} \leq c(u, v)$\\
-(2) flow-conservation: 
+(1) flow-conservation: 
 $\sum_{v\in V}f_{iuv} = \sum_{v\in V}f_{ivu}$, for each $u \in V - (s, t)$ and for each $i = 1, 2,.., k$\\
-(3) capacity-conservation: 
+(2) capacity-conservation: 
 $\sum_{i=1}^{k}f_{iuv} \leq c(u, v)$, for each $u, v \in V$\\
-(4) $\sum_{v\in V}f_{isv} - \sum_{v\in V}f_{ivs} = d_{i}$, for each $i = 1, 2,.., k$\\
-(5) $f_{iuv} \geq 0$, for each $u, v \in V$ and for each $i = 1, 2,.., k$\\
-(6) $f_{uv} = \sum_{i=1}^{k}f_{iuv}$ \\
+(3) $\sum_{v\in V}f_{isv} - \sum_{v\in V}f_{ivs} = d_{i}$, for each $i = 1, 2,.., k$\\
+(4) $f_{iuv} \geq 0$, for each $u, v \in V$ and for each $i = 1, 2,.., k$\\
 
 \noindent
-\textbf{16. (b) Give an example of an instance where the optimal objective value to the (rational) linear program is less than the optimal objective value for the integer linear program.}
+\textbf{16. (b) Give an example of an instance where the optimal objective value to the (rational) linear program is less than the optimal objective value for the integer linear program.}\\\newline
+The instance is a graph like the one shown below. The demand from $S_1$ to $T_1$ is $1$ and the demand from $S_2$ to $T_2$ is also $1$. The capacity of all arcs are $1$. The cost from $S_1$ to $T_1$ is $2$. The cost from $S_2$ to $T_1$ is $0$. The cost from $S_1$ to $1$ is $1$. The cost from $1$ to $T_2$ is $2$. The cost from $S_2$ to $1$ is $3$. The cost from $S_2$ to $T_2$ is $0$. \\ \newline
+We represent arc $S_1-T_1$ as a, arc $S_2-T_1$ as b, arc $S_1-1-T_2$ as c, arc $S_2-T_2$ as d, and arc $S_2-1-T_2$ as e. \\ \newline
+So we want to minimize $2a + 3c + 3e$. The optimal integer solution is one flow of b and one flow of c, which costs 3. The optimal rational solution is $1/2$ of b, $1/2$ of a, $1/2$ of d, and $1/2$ of c, which costs $5/2$. The optimal rational solution has less cost than the optimal integer solution. \\ \newline 
+
+\includegraphics[width=0.9\columnwidth]{16.jpg}
 
 \end{document}
