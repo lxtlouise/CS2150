@@ -16,7 +16,7 @@ Deniz Unal (des2014)}
 \textbf{17.  Problem 29-5 from the CLRS text.} \\ \newline
 \textbf{(a) Formulate the minimum-cost-circulation problem as a linear program.} \\ \newline
 \noindent
-Answer: 
+Answer:
 \begin{flalign*}
 \text{min } &\sum_{(u, v) \in E} a(u, v)f_{uv} \qquad \text{s.t.} \\
 &\forall u\in V, \qquad \sum_{v \in V} f_{vu} - \sum_{v \in V} f_{uv} = 0 \\
@@ -25,5 +25,9 @@ Answer:
 \end{flalign*}
 where the intended meaning of $a(u, v)$ is the real valued cost given for each edge $(u, v)$. And the intended meaning of $f_{uv}$ is the of flow going through edge $(u, v)$. So if we send $f_{uv}$ units of flow through edge $(u, v)$, we obtain a cost of $a(u, v)f_{uv}$. \\ \newline
 \textbf{(b) Suppose that for all edges $(u, v) \in E$, we have $a(u, v) > 0$. Characterize an optimal solution to the minimum-cost-circulation problem.} \\ \newline
-Answer: An optimum solution for this problem would be sending no flow at all. Since the cost of each edge should be multiplied with the flow going through that particular edge in order to calculate the total cost if we send 0 flow, then we would be able to minimize the total cost. This can be done as it does not violate any of the constraints stated above. \\ 
+Answer: An optimum solution for this problem would be sending no flow at all. Since the cost of each edge should be multiplied with the flow going through that particular edge in order to calculate the total cost if we send 0 flow, then we would be able to minimize the total cost. This can be done as it does not violate any of the constraints stated above. \\
+
+\newline
+\textbf{(c) Formulate the maximum-flow problem as a minimum-cost-circulation problem linear program. That is given a maximum-flow problem instance $G = (V, E)$ with source $s$, sink $t$ and edge capacities $c$, create a minimum-cost-circulation problem by giving a (possibly different) network $G^{'} = (V^{'}, E^{'})$ with edge capacities $c^{'}$ and edge costs $a^{'}$ such that you can discern a solution to the maximum-flow problem from a solution to the minimum-cost-circulation problem.}\\ \newline
+In the new network $G^{'} = (V^{'}, E^{'})$, we have already been given source $s$ and sink $t$. What we need to do is to add an edge from $t$ to $s$ with infinite capacity and a large negative cost. So we have $c(t, s) = \infty$ and $a(t, s) = -1$. In such a graph, the minimum-cost-circulation will automatically route as much flow as possible from $t$ to $s$ to lower the total cost, which is our objective is question (a). From the constraints in question (a), we have the flow conservation. So we know that the amount of flow goes from $t$ to $s$ equals the amount of flow goes from $s$ to $t$. When the minimum-cost-circulation maximize the flow from $t$ to $s$, it maximize the flow from $s$ to $t$ at the same time. Therefore, we convert this to a max flow problem. 
 \end{document}
