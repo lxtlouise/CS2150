@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Assignment }
+\author{Xiaoting Li (xil139) \\
+Ziyu Zhang (ziz41) \\
+Deniz Unal (des2014)}
+\date{February 8, 2019}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{17.  Problem 29-5 from the CLRS text.} \\ \newline
+\textbf{(a) Formulate the minimum-cost-circulation problem as a linear program.} \\ \newline
+\noindent
+Answer: 
+\begin{flalign*}
+\text{min } &\sum_{(u, v) \in E} a(u, v)f_{uv} \qquad \text{s.t.} \\
+&\forall u\in V, \qquad \sum_{v \in V} f_{vu} - \sum_{v \in V} f_{uv} = 0 \\
+&\forall u, v \in V, \qquad f_{uv} \geq 0 \\
+&\forall u, v \in V, \qquad f_{uv} \leq c(u, v) \\
+\end{flalign*}
+where the intended meaning of $a(u, v)$ is the real valued cost given for each edge $(u, v)$. And the intended meaning of $f_{uv}$ is the of flow going through edge $(u, v)$. So if we send $f_{uv}$ units of flow through edge $(u, v)$, we obtain a cost of $a(u, v)f_{uv}$. \\ \newline
+\textbf{(b) Suppose that for all edges $(u, v) \in E$, we have $a(u, v) > 0$. Characterize an optimal solution to the minimum-cost-circulation problem.} \\ \newline
+Answer: An optimum solution for this problem would be sending no flow at all. Since the cost of each edge should be multiplied with the flow going through that particular edge in order to calculate the total cost if we send 0 flow, then we would be able to minimize the total cost. This can be done as it does not violate any of the constraints stated above. \\ 
+\end{document}
