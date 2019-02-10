@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{amsmath}
 
 \title{Assignment 10}
 \author{Xiaoting Li (xil139) \\
@@ -14,20 +15,23 @@ Deniz Unal (des2014)}
 \noindent
 \textbf{18.
 (a) Consider the problem of finding a minimum weight arborescence of an directed edge-weight graph with designed root $r$. Give a polynomial sized integer linear programming formulation.} \\ \newline
-Answer: In order to get a polynomial sized integer linear programming formulation, we need to convert this problem to a network flow problem to reduce the number of constraints. We add $f_{ij}^{k}$ for every $(i, j)\in E$ and $k\in V$. We define $c_{ij}$ as the weight of edge $(i, j)$. So the objective of the problem is to minimize $\sum_{(i,j)\in E}f_{ij}c_{ij}$. The constraints are: \\\newline
+Answer: For minimum weight arborescence problem, we need to make sure that there exists a path from root $r$ to all other vertices. And we need to make sure the arborescence is a spanning tree that contains no cycle. In order to get a polynomial sized integer linear programming formulation, we need to convert this problem to a network flow problem to reduce the number of constraints. We add $f_{ij}^{k}$ for every $(i, j)\in E$ and $k\in V$. We define $c_{ij}$ as the weight of edge $(i, j)$. So the objective of the problem is to minimize $\sum_{(i,j)\in E}f_{ij}c_{ij}$. The constraints are: \\\newline
 (1) $f_{ij}^{k}\in \{{0, 1}\}$, for all $k\in V - \{{r}\}$\\ \newline
 (2) $\sum_{j:(r,j)\in E} f_{ij}^{k} = 1$, for all $k\in V - \{{r}\}$ \\ \newline
 (3) $\sum_{i: (i,v)\in E}^{k} = \sum_{j:(v, j)\in E}^{k}$, for all $v, k\in V - \{{r}\}$ \\ \newline
 If an edge is in arborescence, $f_{ij}^{k}$ is 1. We have $VE$ variables, and we have $VE + V + V^2$ constraints. So we have a polynomial sized integer linear programming formulation for minimum weight arborescence problem.\\ \newline
 \textbf{(b) Consider the problem of finding a minimum weight spanning tree of an undirected edge-weight graph. Give a polynomial sized integer linear programming formulation.}\\ \newline
-Answer: Like (a), we convert this problem into a network flow problem to get polynomial sized linear programming. We add $f_{ij}^{k}$ for every $(i, j)\in E$ and $k\in V$. We define $c_{ij}$ as the weight of edge $(i, j)$. So the objective of the problem is to minimize $\sum_{(i,j)\in E}f_{ij}c_{ij}$. The constraints are: \\ \newline
+Answer: For minimum weight spanning tree, we need make sure there is $|V| - 1$ edges in the spanning tree and there is no cycle in the spanning tree.  Like (a), we convert this problem into a network flow problem to get polynomial sized linear programming. We add $f_{ij}^{k}$ for every $(i, j)\in E$ and $k\in V$. We define $c_{ij}$ as the weight of edge $(i, j)$. So the objective of the problem is to minimize $\sum_{(i,j)\in E}f_{ij}c_{ij}$. The constraints are: \\ \newline
 (1) $f_{ij}^{k}\in \{{0, 1}\}$, for all $k\in V$\\ \newline
 (2) $\sum_{(i,j)\in E}f_{ij}^{k} \leq k - 1$, for all $k\in V$\\ \newline
 (3) $\sum_{i: (i,v)\in E}^{k} = \sum_{j:(v, j)\in E}^{k}$, for all $v, k\in V$ \\ \newline
 If an edge is in the spanning tree, $f_{ij}^{k}$ is 1. We have $VE$ variables, and we have $VE + V + V^2$ constraints. So we have a polynomial sized integer linear programming formulation for minimum weight spanning tree.\\ \newline
 \textbf{(c) Consider the problem of finding a minimum weight spanning tree of an undirected edge-weight graph $G = (V, E)$. Give an integer linear programming formulation using the following intuition, and prove that your formulation is correct: There is an indicator $0/1$ random variable for each edge. You must choose at least $n - 1$ edges ($n$ is number of vertices in the graph). For each subset $S$ of $k$ vertices, you can choose at most $k - 1$ edges connecting vertices in $S$. Explain why the size of this linear program can be exponential in the size of the graph.} \\\newline
-
-
+Answer: The constraints of minimum weight spanning tree are: \\
+(1) There are $|V| - 1$ edges in the spanning tree: $$\sum_{(i,j)\in E} (i,j) = |V| - 1$$
+(2) There are no cycles in the spanning tree: $$\sum_{(i,j)\in E, i\in S, j\in S}(i, j) \leq |S| - 1, \forall S\subseteq{V}$$ 
+(3) If an edge $(i,j)$ is in the spanning tree, it equals to 1, else it equals to 0: $$(i,j)\in \{0,1\}$$
+The size of the second constraint is exponential. The second constraint makes sure there is no cycle in the spanning tree. It means when we pick $n$ vertices randomly in the spanning tree $n\leq |V|$, there is no cycle in these $n$ vertices. So the number of possibilities is the sum of combinations, $\sum_{1\leq n \leq |V|}\binom{n}{|V|}$, which equals to $2^n$. $n$ is related with the size of the graph. So we can say that size of this linear program can be exponential in the size of the graph. \\ \newline
 \textbf{(d) The Ellipsoid algorithm can solve a rational linear program in time polynomial in the number of variables, even if the number of constraints is exponential, as long as there is a polynomial time algorithm for the separation problem. In the separation problem, the input is a value/number $\hat{x_e}$ for each the variable $x_e$ in the linear program. The output should be a constraint in the linear program that is violated by these values, if such a constraint exists. Give a polynomial time algorithm for the separation problem for the linear program with exponentially many variables you designed in the pervious subproblem.}
 
 
