@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Assignment 11}
+\author{Xiaoting Li (xil139) \\
+Ziyu Zhang (ziz41) \\
+Deniz Unal (des2014)}
+\date{February 13 2019}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{19. Consider the problem of constructing maximum cardinality bipartite matching ( See section 26.3 in the CLR text). Consider the natural integer linear program that you derived in a prior homework problem.} \\
+\textbf{(a) Construct the dual linear program.} \\ \newline
+Answer: We construct the natrual integer linear program for maximum cardinality bipartite matching as 
+\begin{flalign*}
+\text{max } &\sum_{e \in E} x_e \qquad \text{s.t.} \\
+&\forall v \in V, \sum_{e \, \text{adjacent to} \, v} x_e \leq 1 \\
+&\forall e \in E, \; x_e \in \{0, 1\}
+\end{flalign*}
+To get the dual of the problem, we need to construct constraints from the objective in the primal and construct objective from the constraints in the primal. Let's have a variable $\alpha_{v}$ for the second constraint in the primal linear program. We can get the dual of this problem as below: 
+\begin{flalign*}
+\text{min } &\sum_{v \in V} \alpha_v \qquad \text{s.t.} \\
+&\forall (u, v) \in E, \quad   \alpha_u + \alpha_v \geq 1 \\
+&\forall v \in V, \; \alpha_v \in \{0, 1\}
+\end{flalign*} \\ \newline
+\textbf{(b) Give a natural English interpretation of the dual problem (e.g. similar to how we interpreted the dual of diet problem as the pill problem)} \\ \newline
+The dual problem is to minimize the number of vertices which are the endpoints of more than more edges in the bipartite graph. \\ \newline
+\textbf{(c) We previously showed that there was always an integer optimal solution (so all values are 0 or 1) to the primal linear program. Does the dual problem always have an integer optimal solution? Justify your answer.} \\
+\textbf{(d) Explain how to give a simple proof that a graph doesn’t have a matching of a particular size based on the dual linear program. You should be able to come up with a method that would convince someone who knows nothing about linear programming.
+}
+
+\end{document}
