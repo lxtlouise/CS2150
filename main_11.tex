@@ -29,7 +29,8 @@ To get the dual of the problem, we need to construct constraints from the object
 \end{flalign*} \\ \newline
 \textbf{(b) Give a natural English interpretation of the dual problem (e.g. similar to how we interpreted the dual of diet problem as the pill problem)} \\ \newline
 The dual problem is to minimize the number of vertices which are the endpoints of more than one edge in the bipartite graph. \\ \newline
-\textbf{(c) We previously showed that there was always an integer optimal solution (so all values are 0 or 1) to the primal linear program. Does the dual problem always have an integer optimal solution? Justify your answer.} \\
+\textbf{(c) We previously showed that there was always an integer optimal solution (so all values are 0 or 1) to the primal linear program. Does the dual problem always have an integer optimal solution? Justify your answer.} \\ \newline
+In bipartite graphs, every basic feasible solution of dual problem of is integral since every optimal solution must have $\alpha_v \geq 1 \,\, \forall v \in V$ and so every optimal basic feasible solution has  $\alpha_v \in \{0, 1\} \,\, \forall v \in V$, thus it is a feasible solution for integer-dual problem.\\ \newline
 \textbf{(d) Explain how to give a simple proof that a graph doesn’t have a matching of a particular size based on the dual linear program. You should be able to come up with a method that would convince someone who knows nothing about linear programming.
 } \\ \newline
 Finding a matching of particular size is equivalent to find particular number of points that have more than one edge. However, the graph may not have that number of points which have more than on edge. \\ \newline
