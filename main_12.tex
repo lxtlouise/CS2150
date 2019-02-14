@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Assignment 12}
+\author{Xiaoting Li (xil139) \\
+Ziyu Zhang (ziz41) \\
+Deniz Unal (des2014)}
+\date{February 2019}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{20. Assume that you have a park (mathematically a 2 dimensional plane) containing $k$ lights and $n$ statues. In particular, you know for each light $L$ and for each statue $S$, whether light $L$ will illuminate statue $S$ if light $L$ is lit. This is a binary value, there is no possibility of partial illumination. Further you are told for each light $L$, the cost $C_L$ for turning $L$ on. The goal is to light all the statues while spending as little money as possible.} \\ \newline
+\textbf{(a) Construct an integer linear program for this problem where there are binary in- dicator variables for each light signifying whether the light is lit or not.} \\ \newline
+Answer: We use a binary indicator 0/1 to represent whether the light is on or not. 1 means that the light is on and 0 means that the light is off. We also use a binary indicator 0/1 to represent whether there is light on the statue. We denote $L_{i}$ as one light and we denote $S_{ij}$ as the light $i$ can illuminate on statue $j$. The objective of the problem is to minimize the cost. The first constraint says that each statue must be completely illuminated. The second constraint says if a statue is illuminated, then the light which can illuminate it must be on. 
+\begin{flalign*}
+ \forall L_{i} \in L, \quad  \text{min } &\sum_{i=1}^{k}{L_{i}*C_L}  \qquad \text{s.t.} \\
+ & \forall S_{ij} \in S, \quad \sum_{i=1}^{k}S_{ij} \geq 1 , \quad j = 1, 2,... , n\\
+ & \forall S_{ij} \in S, \forall L_{i} \in L, \quad L_{i} \geq S_{ij}\\
+&\forall L_{i} \in L, \quad L_{i} \in \{0, 1\}, \quad i = 1, 2,..., k \\
+&\forall S_{ij}, \quad S_{ij} \in \{0, 1\}, \quad i = 1, 2,..., k \quad \text{and} \quad j = 1, 2,... , n
+\end{flalign*}
+\noindent
+\textbf{(b) Consider the relaxed linear program where the variables are allowed to be any rational between 0 and 1. Give an English explanation of the problem that this models.} \\ \newline
+Answer: The relaxed linear program of this problem is as below:
+\begin{flalign*}
+ \forall L_{i} \in L, \quad  \text{min } &\sum_{i=1}^{k}{L_{i}*C_L}  \qquad \text{s.t.} \\
+ & \forall S_{ij} \in S, \quad \sum_{i=1}^{k}S_{ij} \geq 1 , \quad j = 1, 2,... , n\\
+ & \forall S_{ij} \in S, \forall L_{i} \in L, \quad L_{i} \geq S_{ij}\\
+&\forall L_{i} \in L, \quad L_{i} \leq 1, \quad i = 1, 2,..., k \\
+&\forall L_{i} \in L, \quad L_{i} \geq 0, \quad i = 1, 2,..., k \\
+&\forall S_{ij}, \quad S_{ij} \leq 1, \quad i = 1, 2,..., k \quad \text{and} \quad j = 1, 2,... , n\\
+&\forall S_{ij}, \quad S_{ij} \geq 0, \quad i = 1, 2,..., k \quad \text{and}\quad j = 1, 2,... , n
+\end{flalign*}
+The English interpretation of this problem is: We need to minimize the cost of turning on lights to illuminate all of the statues. All the lights have dimmer controller to adjust the brightness. Each statue should be illuminated completely by at least one light. Multiple lights can be turned on together to illuminate one statue completely.\\ \newline
+\textbf{(c) Show that the relaxed linear program where the variables are allowed to be any rational between 0 and 1 can have a strictly smaller objective than the optimal objective for the integer linear program for some instances.} \\ \newline
+Answer: The second constraint says that each statue should be illuminated completely by at least one light. Since there are $k$ lights, each light must be at least $1/k$ in the relaxed linear program. So the total cost can $\sum_{i=1}^{k} 1/k * L_{i} * C_{L} = C_{L}$. However, in integer linear program, to illuminate a statue completely (second constraint), $L_{i}$ must be 1 (third constraint). The optimal solution is $sum_{i=1}^{k}{L_{i}*C_L} = k*C_{L}$, which is larger than one instance of relaxed linear program. So we can say that the relaxed linear program where the variables are allowed to be any rational between 0 and 1 can have a strictly smaller objective than the optimal objective for the integer linear program for some instances.\\ \newline
+\textbf{(d) Construct the dual program for the relaxed linear program.} \\ \newline
+Answer: \\ \newline
+\textbf{(e) Give a natural English interpretation of the dual problem (the problem modeled by the dual linear program)} \\ \newline
+Answer: \\ \newline
+\textbf{(f) Explain how to give a simple proof that a certain cost is required for the problem modeled by the relaxed linear program (the one with dimmer controls) using this natural interpretation of the dual.} \\ \newline
+Answer: 
+
+\end{document}
