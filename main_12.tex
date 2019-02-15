@@ -15,7 +15,7 @@ Deniz Unal (des2014)}
 \noindent
 \textbf{20. Assume that you have a park (mathematically a 2 dimensional plane) containing $k$ lights and $n$ statues. In particular, you know for each light $L$ and for each statue $S$, whether light $L$ will illuminate statue $S$ if light $L$ is lit. This is a binary value, there is no possibility of partial illumination. Further you are told for each light $L$, the cost $C_L$ for turning $L$ on. The goal is to light all the statues while spending as little money as possible.} \\ \newline
 \textbf{(a) Construct an integer linear program for this problem where there are binary in- dicator variables for each light signifying whether the light is lit or not.} \\ \newline
-Answer: We use a binary indicator 0/1 to represent whether the light is on or not. 1 means that the light is on and 0 means that the light is off. We also use a binary indicator 0/1 to represent whether there is light on the statue. We denote $L_{i}$ as one light and we denote $S_{ij}$ as the light $i$ can illuminate on statue $j$. The objective of the problem is to minimize the cost. The first constraint says that each statue must be completely illuminated. The second constraint says if a statue is illuminated, then the light which can illuminate it must be on. 
+Answer: We use a binary indicator 0/1 to represent whether the light is on or not. 1 means that the light is on and 0 means that the light is off. We also use a binary indicator 0/1 to represent whether there is light on the statue. We denote $L_{i}$ as one light and we denote $S_{ij}$ as the light $i$ can illuminate on statue $j$. The objective of the problem is to minimize the cost. The first constraint says that each statue must be completely illuminated. The second constraint says if a statue is illuminated, then the light which can illuminate it must be on.
 \begin{flalign*}
  \forall L_{i} \in L, \quad  \text{min } &\sum_{i=1}^{k}{L_{i}*C_L}  \qquad \text{s.t.} \\
  & \forall S_{ij} \in S, \quad \sum_{i=1}^{k}S_{ij} \geq 1 , \quad j = 1, 2,... , n\\
@@ -25,7 +25,7 @@ Answer: We use a binary indicator 0/1 to represent whether the light is on or no
 \end{flalign*}
 \noindent
 \textbf{(b) Consider the relaxed linear program where the variables are allowed to be any rational between 0 and 1. Give an English explanation of the problem that this models.} \\ \newline
-Answer: The relaxed linear program of this problem is as below. The first constraint means when a light partially illuminates a statue, the sum up of illumination from different lights should illuminate a statue completely. 
+Answer: The relaxed linear program of this problem is as below. The first constraint means when a light partially illuminates a statue, the sum up of illumination from different lights should illuminate a statue completely.
 \begin{flalign*}
  \forall L_{i} \in L, \quad  \text{min } &\sum_{i=1}^{k}{L_{i}*C_L}  \qquad \text{s.t.} \\
  & \forall S_{ij} \in S, \quad \sum_{i=1}^{k}S_{ij} \geq 1 , \quad j = 1, 2,... , n\\
@@ -43,15 +43,15 @@ Answer: Let's say we have $\alpha_{ij}$ for the first constraint and $\beta_{i}$
 \begin{flalign*}
  \forall L_{i} \in L, \quad  \text{max} &\sum_{i=1}^{k}{\alpha_{ij}}  \qquad \text{s.t.} \\
  & \forall S_{ij} \in S, \quad \sum_{i=1}^{k}\alpha_{ij} \leq C_{L} , \quad j = 1, 2,... , n\\
- & \forall S_{ij} \in S, \forall L_{i} \in L, \quad \alpha_{ij} - \beta{j} \leq C_{L}\\
+ & \forall S_{ij} \in S, \forall L_{i} \in L, \quad \beta{j} - \alpha_{ij} \leq C_{L}\\
 &\alpha_{ij} \leq 1, \quad i = 1, 2,..., k \quad \text{and} \quad j = 1, 2,... , n\\
 & \alpha_{ij} \geq 0, \quad i = 1, 2,..., k \quad \text{and} \quad j = 1, 2,... , n\\
 & \beta_{i} \leq 1, \quad i = 1, 2,..., k \\
-& \beta_{i} \geq 0, \quad i = 1, 2,..., k 
+& \beta_{i} \geq 0, \quad i = 1, 2,..., k
 \end{flalign*}
 \textbf{(e) Give a natural English interpretation of the dual problem (the problem modeled by the dual linear program)} \\ \newline
 Answer: In the dual problem $\alpha_{ij}$ is the number of statues that one light can partially illuminates. So the objective is to maximize the number of the statues that one light can partially illuminates. The cost to illuminate one statue should still be lower or equal to the cost to turn on one light. \\ \newline
 \textbf{(f) Explain how to give a simple proof that a certain cost is required for the problem modeled by the relaxed linear program (the one with dimmer controls) using this natural interpretation of the dual.} \\ \newline
-Answer: 
+Answer:
 
 \end{document}
