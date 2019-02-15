@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Assignment 13}
+\author{Xiaoting Li (xil139) \\
+Ziyu Zhang (ziz41) \\
+Deniz Unal (des2014)}
+\date{}
+
+\begin{document}
+
+\noindent
+\textbf{21. Consider a two person game specified by an $m$ by $n$ payoff matrix $P$. The two players can can be thought of as a row player and a column player. The number of possible moves for the row player is $m$ and the number of possible moves for the column player is $n$. Each player picks one of its moves, and then money is exchanged. If the row player makes move $r$, and the column player makes move $c$, then the row player pays the column player $P_r$, $c$ dollars. Note that $P_r$, $c$ could be negative, in which case really the column player is paying money to the row player. We assume that the game is played sequentially, so that one player specifies his move, the other players sees that move, and then specifies a response move (we cam assume that this player makes the best possible response). Obviously each player wants to be payed as much money as possible, and if this is not possible, to pay as little as possible.} \\ \newline
+\textbf{(a) Give a simple/efficient algorithm that will compute the best response for the column player give a specific move by the row player.} \\ \newline
+Answer: \\ \newline
+\textbf{(b) Give a simple/efficient algorithm that will compute the best first move by the row player given that the column player will give its best response.} \\ \newline
+Answer: \\ \newline
+\textbf{(c) Either give an example of a payoff matrix where it is strictly better for each player to go second, or argue that there is no such payoff matrix.} \\ \newline
+\textbf{Now we change the problem so that each player specifies a probability distribution over his moves. So the row player specifies a probability $p_r$ that wants to play row $r$ and the column player specifies a probability  that she wants to play column $c$. The row player pays the column player $E[P_r,c]$, where the expectation is taken over the two probability distributions in the natural way. The is the row player pays the column player $\sum_r\sum_c P_r \cdot q_c \cdot P_{r,c}$.} \\ \newline
+\textbf{(d) Give a simple/efficient algorithm that will efficiently compute the best response (which is probability distribution over column moves) for the column player given a probability distribution specified by the row player.} \\ \newline
+Answer: \\ \newline
+\textbf{(e) Give a linear program that will compute the best first move (probability distribution over row moves) for the row player given that the column player makes the best response.} \\ \newline
+Answer: \\ \newline
+\textbf{(f) Show the linear program you would get for the following payoff matrix} \\ \newline
+Answer: \\ \newline
+\textbf{(g) Give a linear program to compute the best first move (probability distribution over column moves) for the column player given that the row player makes the best response.} \\ \newline
+Answer: \\ \newline
+\textbf{(h) Show the linear program you would get for the following payoff matrix}\\ \newline
+Answer: \\ \newline
+\textbf{(i) Either give an example of a payoff matrix where it is strictly better for each player to go second, or argue that there is no such payoff matrix.
+Hint: Strong linear programming duality.} \\ \newline
+Answer: 
+
+\end{document}
