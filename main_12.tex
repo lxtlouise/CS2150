@@ -1,4 +1,4 @@
-=\documentclass{article}
+\documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 
@@ -23,18 +23,9 @@ Answer: We use a binary indicator 0/1 to represent whether the light is on or no
 &\forall L_{i} \in L, \quad L_{i} \in \{0, 1\}, \quad i = 1, 2,..., k \\
 &\forall S_{ij}, \quad S_{ij} \in \{0, 1\}, \quad i = 1, 2,..., k \quad \text{and} \quad j = 1, 2,... , n
 \end{flalign*}
-\newline
-Answer: We use a binary indicator 0/1 to represent whether the light L is on or not. 1 means that the light is on and 0 means that the light is off. We also use a binary indicator 0/1 to represent whether light L will illuminate statue S if light L is lit. We denote $L_{i}$ as whether light i is on or not, and we denote $S_{ij}$ as whether the light $i$ can illuminate on statue $j$. The objective of the problem is to minimize the cost. The first constraint says that each statue must be completely illuminated. The second constraint says if a statue is illuminated, then the light which can illuminate it must be on. 
-\begin{flalign*}
- \forall L_{i} \in L, \quad  \text{min } &\sum_{i=1}^{k}{L_{i}*C_{i}}  \qquad \text{s.t.} \\
- & \forall S_{ij} \in S, \quad \sum_{i=1}^{k}S_{ij} * L_{i} \geq 1 , \quad j = 1, 2,... , n\\
-&\forall L_{i} \in L, \quad L_{i} \in \{0, 1\}, \quad i = 1, 2,..., k \\
-&\forall S_{ij}, \quad S_{ij} \in \{0, 1\}, \quad i = 1, 2,..., k \quad \text{and} \quad j = 1, 2,... , n
-\end{flalign*}
-
 \noindent
 \textbf{(b) Consider the relaxed linear program where the variables are allowed to be any rational between 0 and 1. Give an English explanation of the problem that this models.} \\ \newline
-Answer: The relaxed linear program of this problem is as below:
+Answer: The relaxed linear program of this problem is as below. The first constraint means when a light partially illuminates a statue, the sum up of illumination from different lights should illuminate a statue completely. 
 \begin{flalign*}
  \forall L_{i} \in L, \quad  \text{min } &\sum_{i=1}^{k}{L_{i}*C_L}  \qquad \text{s.t.} \\
  & \forall S_{ij} \in S, \quad \sum_{i=1}^{k}S_{ij} \geq 1 , \quad j = 1, 2,... , n\\
@@ -48,9 +39,18 @@ The English interpretation of this problem is: We need to minimize the cost of t
 \textbf{(c) Show that the relaxed linear program where the variables are allowed to be any rational between 0 and 1 can have a strictly smaller objective than the optimal objective for the integer linear program for some instances.} \\ \newline
 Answer: The second constraint says that each statue should be illuminated completely by at least one light. Since there are $k$ lights, each light must be at least $1/k$ in the relaxed linear program. So the total cost can $\sum_{i=1}^{k} 1/k * L_{i} * C_{L} = C_{L}$. However, in integer linear program, to illuminate a statue completely (second constraint), $L_{i}$ must be 1 (third constraint). The optimal solution is $sum_{i=1}^{k}{L_{i}*C_L} = k*C_{L}$, which is larger than one instance of relaxed linear program. So we can say that the relaxed linear program where the variables are allowed to be any rational between 0 and 1 can have a strictly smaller objective than the optimal objective for the integer linear program for some instances.\\ \newline
 \textbf{(d) Construct the dual program for the relaxed linear program.} \\ \newline
-Answer: \\ \newline
+Answer: Let's say we have $\alpha_{ij}$ for the first constraint and $\beta_{i}$ for the second constraint. The dual program for the relaxed linear program is as below:
+\begin{flalign*}
+ \forall L_{i} \in L, \quad  \text{max} &\sum_{i=1}^{k}{\alpha_{ij}}  \qquad \text{s.t.} \\
+ & \forall S_{ij} \in S, \quad \sum_{i=1}^{k}\alpha_{ij} \leq C_{L} , \quad j = 1, 2,... , n\\
+ & \forall S_{ij} \in S, \forall L_{i} \in L, \quad \alpha_{ij} - \beta{j} \leq C_{L}\\
+&\alpha_{ij} \leq 1, \quad i = 1, 2,..., k \quad \text{and} \quad j = 1, 2,... , n\\
+& \alpha_{ij} \geq 0, \quad i = 1, 2,..., k \quad \text{and} \quad j = 1, 2,... , n\\
+& \beta_{i} \leq 1, \quad i = 1, 2,..., k \\
+& \beta_{i} \geq 0, \quad i = 1, 2,..., k 
+\end{flalign*}
 \textbf{(e) Give a natural English interpretation of the dual problem (the problem modeled by the dual linear program)} \\ \newline
-Answer: \\ \newline
+Answer: In the dual problem $\alpha_{ij}$ is the number of statues that one light can partially illuminates. So the objective is to maximize the number of the statues that one light can partially illuminates. The cost to illuminate one statue should still be lower or equal to the cost to turn on one light. \\ \newline
 \textbf{(f) Explain how to give a simple proof that a certain cost is required for the problem modeled by the relaxed linear program (the one with dimmer controls) using this natural interpretation of the dual.} \\ \newline
 Answer: 
 
