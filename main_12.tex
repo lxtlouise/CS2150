@@ -1,4 +1,4 @@
-\documentclass{article}
+=\documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 
@@ -23,6 +23,15 @@ Answer: We use a binary indicator 0/1 to represent whether the light is on or no
 &\forall L_{i} \in L, \quad L_{i} \in \{0, 1\}, \quad i = 1, 2,..., k \\
 &\forall S_{ij}, \quad S_{ij} \in \{0, 1\}, \quad i = 1, 2,..., k \quad \text{and} \quad j = 1, 2,... , n
 \end{flalign*}
+\newline
+Answer: We use a binary indicator 0/1 to represent whether the light L is on or not. 1 means that the light is on and 0 means that the light is off. We also use a binary indicator 0/1 to represent whether light L will illuminate statue S if light L is lit. We denote $L_{i}$ as whether light i is on or not, and we denote $S_{ij}$ as whether the light $i$ can illuminate on statue $j$. The objective of the problem is to minimize the cost. The first constraint says that each statue must be completely illuminated. The second constraint says if a statue is illuminated, then the light which can illuminate it must be on. 
+\begin{flalign*}
+ \forall L_{i} \in L, \quad  \text{min } &\sum_{i=1}^{k}{L_{i}*C_{i}}  \qquad \text{s.t.} \\
+ & \forall S_{ij} \in S, \quad \sum_{i=1}^{k}S_{ij} * L_{i} \geq 1 , \quad j = 1, 2,... , n\\
+&\forall L_{i} \in L, \quad L_{i} \in \{0, 1\}, \quad i = 1, 2,..., k \\
+&\forall S_{ij}, \quad S_{ij} \in \{0, 1\}, \quad i = 1, 2,..., k \quad \text{and} \quad j = 1, 2,... , n
+\end{flalign*}
+
 \noindent
 \textbf{(b) Consider the relaxed linear program where the variables are allowed to be any rational between 0 and 1. Give an English explanation of the problem that this models.} \\ \newline
 Answer: The relaxed linear program of this problem is as below:
