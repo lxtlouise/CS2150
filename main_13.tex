@@ -17,23 +17,23 @@ Answer: When the column player is given a specific move by the row player, it ch
 \textbf{(b) Give a simple/efficient algorithm that will compute the best first move by the row player given that the column player will give its best response.} \\ \newline
 Answer: We can use Minimax algorithm to compute the best response for the row player given that the column player will give its best response. In this case, both sides are rationally players and both of them pick best moves. We build a game search tree, which keeps expanding all possible states from the initial state until we enumerate all possible ways for the game to finish. The row player assumes that the column player always picks best response (when column player is given response $r$ from row player, it picks the response maximizes $P_{r,c}$). Using the search tree, the row player can compute the amount of money it can gain for each of its legal action given the best response from the column player. It means when row player is given response $c$ from the column player, it picks that response that minimizes $P_{r,c}$.\\ \newline
 \textbf{(c) Either give an example of a payoff matrix where it is strictly better for each player to go second, or argue that there is no such payoff matrix.} \\ \newline
-Answer: There is no such payoff matrix where it is strictly better for each player to second. In (b), we say that assume both players are rational players and pick the best moves. When column player is given response $r$ from row player, it picks the response maximizes $P_{r,c}$). When row player is given response $c$ from the column player, it picks that response that minimizes $P_{r,c}$. However, in general there is no stable state for the system that results in no further changes. So $min_{r}max_{c}P_{r,c} \neq max_{c}min_{r}P_{r,c}$. Roshambo in the hint has no such announcement. \\\newline
+Answer: There is no such payoff matrix where it is strictly better for each player to second. In (b), we say that assume both players are rational players and pick the best moves. When column player is given response $r$ from row player, it picks the response maximizes $P_{r,c}$. When row player is given response $c$ from the column player, it picks that response that minimizes $P_{r,c}$. However, in general there is no equilibrium for pure strategy. Players have the incentive to keep swithcing their strategies. So $min_{r}max_{c}P_{r,c} \neq max_{c}min_{r}P_{r,c}$. Roshambo in the hint is an example that has no such announcement. \\\newline
 \textbf{Now we change the problem so that each player specifies a probability distribution over his moves. So the row player specifies a probability $p_r$ that wants to play row $r$ and the column player specifies a probability  that she wants to play column $c$. The row player pays the column player $E[P_r,c]$, where the expectation is taken over the two probability distributions in the natural way. The is the row player pays the column player $\sum_r\sum_c P_r \cdot q_c \cdot P_{r,c}$.} \\ \newline
 \textbf{(d) Give a simple/efficient algorithm that will efficiently compute the best response (which is probability distribution over column moves) for the column player given a probability distribution specified by the row player.} \\ \newline
-Answer: \\ \newline
+Answer: We can use Expectiminimax Algorithm to compute the best response for the column player given a probability distribution specified by the row player. In this case, we have game of chance. We have an Expectiminimax tree, in which the level of max and min nodes are interleaved with "chance" node. Column player calculates the expectiminimax value of the row player and pick the one that can maximize $P_{r,c}$. When row player picks move, it first calculates the expectiminimax value of the column player and then picks the one that cam minimize $P_{r,c}$. So for the column player, it picks the action $\max_{a\in action-n}V_{exptminmax}Succ(s, a)$ (Succ are nodes of row player, $s$ is next state). For the row player, it picks that action $\min_{a\in action-m}V_{exptminmax}Succ(s, a)$ (Succ are nodes of column player, $s$ is next state).\\ \newline
 \textbf{(e) Give a linear program that will compute the best first move (probability distribution over row moves) for the row player given that the column player makes the best response.} \\ \newline
 Answer: Let $p_i$ be the probability of selecting row $i$ and let $E_j$ be the expected value for the row player (a function of $p_i's$) when column player chooses column $j$. Then the expected value for row player (the amount that they will pay to column player) will be at most $max\{E_1, E_2,..., E_n\}$. Since we are trying to find the best response for row player our objective would be minimize the expected value for row player. Let $e = max\{E_1, E_2,..., E_n\}$ then the linear program for this problem would be: \\
 \begin{flalign*}
-&min \quad e \qquad \text{s.t.} \\
+&min \quad e \qquad \text{s.t.} \\
 &e \geq E_j \quad , \, j = \{1,2,...,n\} \\
 &p_i \geq 0 \quad , \, i =  \{1,2,...,m\} \\
 \end{flalign*}  
 \textbf{(f) Show the linear program you would get for the following payoff matrix} \\ \newline
 Answer:  Let $p_i$ be the probability of selecting row $i$ and let $E_j$ be the expected value for the row player when column player chooses column $j$. Then we have: \\
 \begin{flalign*}
-&E_1 = 2p_1 + 11p_2 + 6p_3 \\
-&E_2 = 3p_1 + 7p_2 + 9p_3 \\
-&E_3 = 5p_1 + 4p_2 + p_3 \\
+&E_1 = 2p_1 + 11p_2 + 6p_3 \\
+&E_2 = 3p_1 + 7p_2 + 9p_3 \\
+&E_3 = 5p_1 + 4p_2 + p_3 \\
 &e = max\{E_1, E_2, E_3\}
 \end{flalign*}  
 \\Then the formula for the linear program is: \\
@@ -47,16 +47,16 @@ Answer:  Let $p_i$ be the probability of selecting row $i$ and let $E_j$ be the 
 \textbf{(g) Give a linear program to compute the best first move (probability distribution over column moves) for the column player given that the row player makes the best response.} \\ \newline
 Answer: Let $p_i$ be the probability of selecting column $i$ and let $E_j$ be the expected value for the column player (a function of $p_i's$) when row player chooses row $j$. Then the expected value for column player (the amount that they will get from row player) will be at least $min\{E_1, E_2,..., E_m\}$. Since we are trying to find the best response for column player our objective would be maximize the expected value for column player. Let $e = min\{E_1, E_2,..., E_m\}$ then the linear program for this problem would be: \\
 \begin{flalign*}
-&max \quad e \qquad \text{s.t.} \\
+&max \quad e \qquad \text{s.t.} \\
 &e \leq E_j \quad , \, j = \{1,2,...,n\} \\
 &p_i \geq 0 \quad , \, i =  \{1,2,...,m\} \\
 \end{flalign*}  
 \textbf{(h) Show the linear program you would get for the following payoff matrix}\\ \newline
 Answer: Answer:  Let $p_i$ be the probability of selecting column $i$ and let $E_j$ be the expected value for the column player when row player chooses row $j$. Then we have: \\
 \begin{flalign*}
-&E_1 = 2p_1 + 3p_2 + 5p_3 \\
-&E_2 = 11p_1 + 7p_2 + 4p_3 \\
-&E_3 = 6p_1 + 9p_2 + p_3 \\
+&E_1 = 2p_1 + 3p_2 + 5p_3 \\
+&E_2 = 11p_1 + 7p_2 + 4p_3 \\
+&E_3 = 6p_1 + 9p_2 + p_3 \\
 &e = min\{E_1, E_2, E_3\}
 \end{flalign*}  
 \\Then the formula for the linear program is: \\
