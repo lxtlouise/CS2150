@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{amsmath}
 
 \title{Assignment 13}
 \author{Xiaoting Li (xil139) \\
@@ -8,14 +9,15 @@ Deniz Unal (des2014)}
 \date{}
 
 \begin{document}
-
+\maketitle
 \noindent
 \textbf{21. Consider a two person game specified by an $m$ by $n$ payoff matrix $P$. The two players can can be thought of as a row player and a column player. The number of possible moves for the row player is $m$ and the number of possible moves for the column player is $n$. Each player picks one of its moves, and then money is exchanged. If the row player makes move $r$, and the column player makes move $c$, then the row player pays the column player $P_r$, $c$ dollars. Note that $P_r$, $c$ could be negative, in which case really the column player is paying money to the row player. We assume that the game is played sequentially, so that one player specifies his move, the other players sees that move, and then specifies a response move (we cam assume that this player makes the best possible response). Obviously each player wants to be payed as much money as possible, and if this is not possible, to pay as little as possible.} \\ \newline
 \textbf{(a) Give a simple/efficient algorithm that will compute the best response for the column player give a specific move by the row player.} \\ \newline
-Answer: \\ \newline
+Answer: When the column player is given a specific move by the row player, it checks the available legal actions. And it computes the amount of money it can get from each of these legal actions and then pick the one that helps it gain most of the money.\\ \newline
 \textbf{(b) Give a simple/efficient algorithm that will compute the best first move by the row player given that the column player will give its best response.} \\ \newline
-Answer: \\ \newline
+Answer: We can use Minimax algorithm to compute the best response for the row player given that the column player will give its best response. In this case, both sides are rationally players and both of them pick best moves. We build a game search tree, which keeps expanding all possible states from the initial state until we enumerate all possible ways for the game to finish. The row player assumes that the column player always picks best response (when column player is given response $r$ from row player, it picks the response maximizes $P_{r,c}$). Using the search tree, the row player can compute the amount of money it can gain for each of its legal action given the best response from the column player. It means when row player is given response $c$ from the column player, it picks that response that minimizes $P_{r,c}$.\\ \newline
 \textbf{(c) Either give an example of a payoff matrix where it is strictly better for each player to go second, or argue that there is no such payoff matrix.} \\ \newline
+Answer: There is no such payoff matrix where it is strictly better for each player to second. In (b), we say that assume both players are rational players and pick the best moves. When column player is given response $r$ from row player, it picks the response maximizes $P_{r,c}$). When row player is given response $c$ from the column player, it picks that response that minimizes $P_{r,c}$. However, in general there is no stable state for the system that results in no further changes. So $min_{r}max_{c}P_{r,c} \neq max_{c}min_{r}P_{r,c}$. Roshambo in the hint has no such announcement. \\\newline
 \textbf{Now we change the problem so that each player specifies a probability distribution over his moves. So the row player specifies a probability $p_r$ that wants to play row $r$ and the column player specifies a probability  that she wants to play column $c$. The row player pays the column player $E[P_r,c]$, where the expectation is taken over the two probability distributions in the natural way. The is the row player pays the column player $\sum_r\sum_c P_r \cdot q_c \cdot P_{r,c}$.} \\ \newline
 \textbf{(d) Give a simple/efficient algorithm that will efficiently compute the best response (which is probability distribution over column moves) for the column player given a probability distribution specified by the row player.} \\ \newline
 Answer: \\ \newline
