@@ -5,7 +5,7 @@
 \title{Assignment 13}
 \author{Xiaoting Li (xil139) \\
 Ziyu Zhang (ziz41) \\
-Deniz Unal (des204)}
+Deniz Unal (des2014)}
 \date{}
 
 
@@ -35,14 +35,10 @@ Answer: Based on our explanation for the previous subproblem the the probability
 Answer:  The probability that $h_m(A) = h_m(B)$ gives us the Jacard index which is a measurement that is used to estimate the similarity between finite sample sets. The closer jacard index is to 1, the more similar these two sets are. \\ \newline
 \textbf{(e) Explain how to maintain $h_m(A) = h_m(B)$ using constant space, and constant time per IP packet.} \\ \newline
 \textbf{24. Assume you have a source of random bits. So in one time unit, this source will produce one random bit (that is 1 with probability 1/2 independent of other bits). Consider the problem of outputting a random permutation of the integers from 1 to $n$. So each of the n! permutations should be produced with probability exactly $1/n!$.} \\ \newline
-\textbf{(a) Give an algorithm to solve this problem and show that the expected time of the algorithm is $O(nlogn)$.This includes both the time that your algorithm takes, plus 1 unit of time for each random bit used.} \newline
-We could build a balanced binary tree where each of the non leaf node represent the total number of not selected leaf numbers, and each of the none leaf node is a number of $i$ (ranging from 1 to n). When generating a new number for the permutation, we could use $log(n)$ (the height of the tree) to decide which direction to go (e.g. 0 means go left from the current node, 1 means go right from the current node). Also, after picking up certain number, we also need to go backward from the leaf to update the available not chosen numbers. In these way, for each of the number, we need $log(n)$ random bits and for all numbers, generating the permutation we need $O(nlogn)$.
-\\ \newline
-\newline
-The other way of getting random permutation is to swap the $i$ element with a randomly chosen element of index 1 to n. And do the swap n time from i to n element. In this way, every term, we need $log(n)$ bits each time to determine the index of the element to swap with $i$ element, and we do the swap in n turns. In all we need $O(nlogn)$.
-\\ \newline
-\textbf{(b) Now assume that there is a limited source of at most $n^2$ random bits. Show that there is no algorithm that can solve the problem using expected time $O(n^2)$.}
-\newline
-I don't think so... if we have 1, 2, 3 and have 9 random bits, if we use the second method, each turn, we need 2 bits to decide the element to swap with i element and 3 turns to get random permutation, in all it needs 6 bits which is smaller than 9 bits.
+\textbf{(a) Give an algorithm to solve this problem and show that the expected time of the algorithm is $O(nlogn)$.This includes both the time that your algorithm takes, plus 1 unit of time for each random bit used.} \\ \newline
+Anwer: We can generate a random permutation using a similar way as quicksort. Generating a random permutation is similar to forming a particular linear ordering from 1 to $n$. We denote the final result as $P$. And we divide $P$ into halves, one is $P_1$ and the other one is $P_2$. Since we have a source of random bits(generates one random bit), it is similar to flipping coin. Each time, for example when it generates 1 (similar to flipping a coin and get head), then we put an element in $P_1$. If it generates other bits, we put the element in $P_2$. ($P_1$ is the first half, $P_2$ is the second half). Then we use recursive method to keep repeating the same procedure on $P_1$ and $P_2$. Using this method(similar to quicksort), we can generate a random permutation using $O(nlogn)$.\\ \newline
+\textbf{(b) Now assume that there is a limited source of at most $n^2$ random bits. Show that there is no algorithm that can solve the problem using expected time $O(n^2)$.}\\ \newline
+Answer: Unlike (a), in this question we have a limited source of at most $n^2$ random bits. It means that each time we have to repeatedly generate a $n^2$ bit number $b$ until we have $b < n^2/2$. Then we decide in which position we need to put the element in the permutation. This process takes $O(n^2)$, so there is no algorithm that can solve the problem using expected time $O(n^2)$. 
+
 
 \end{document}
