@@ -30,7 +30,9 @@ Answer: Let $S_i$ be the number at position $i$ in the list. Let $X_i$ be an ind
 \textbf{(d) Explain how the probability that $h_m(A) = h_m(B)$ is an estimate of the similarity of $A$ and $B$.} \\ \newline
 \textbf{(e) Explain how to maintain $h_m(A) = h_m(B)$ using constant space, and constant time per IP packet.} \\ \newline
 \textbf{24. Assume you have a source of random bits. So in one time unit, this source will produce one random bit (that is 1 with probability 1/2 independent of other bits). Consider the problem of outputting a random permutation of the integers from 1 to $n$. So each of the n! permutations should be produced with probability exactly $1/n!$.} \\ \newline
-\textbf{(a) Give an algorithm to solve this problem and show that the expected time of the algorithm is $O(nlogn)$.This includes both the time that your algorithm takes, plus 1 unit of time for each random bit used.} \\ \newline
+\textbf{(a) Give an algorithm to solve this problem and show that the expected time of the algorithm is $O(nlogn)$.This includes both the time that your algorithm takes, plus 1 unit of time for each random bit used.} \newline
+We could build a balanced binary tree where each of the non leaf node represent the total number of not selected leaf numbers, and each of the none leaf node is a number of $i$ (ranging from 1 to n). When generating a new number for the permutation, we could use $log(n)$ (the height of the tree) to decide which direction to go (e.g. 0 means go left from the current node, 1 means go right from the current node). Also, after picking up certain number, we also need to go backward from the leaf to update the available not chosen numbers. In these way, for each of the number, we need $log(n)$ random bits and for all numbers, generating the permutation we need $O(nlogn)$.
+\\ \newline
 \textbf{(b) Now assume that there is a limited source of at most $n^2$ random bits. Show that there is no algorithm that can solve the problem using expected time $O(n^2)$.}
 
 
