@@ -33,7 +33,11 @@ Answer: Let $S_i$ be the number at position $i$ in the list. Let $X_i$ be an ind
 \textbf{(a) Give an algorithm to solve this problem and show that the expected time of the algorithm is $O(nlogn)$.This includes both the time that your algorithm takes, plus 1 unit of time for each random bit used.} \newline
 We could build a balanced binary tree where each of the non leaf node represent the total number of not selected leaf numbers, and each of the none leaf node is a number of $i$ (ranging from 1 to n). When generating a new number for the permutation, we could use $log(n)$ (the height of the tree) to decide which direction to go (e.g. 0 means go left from the current node, 1 means go right from the current node). Also, after picking up certain number, we also need to go backward from the leaf to update the available not chosen numbers. In these way, for each of the number, we need $log(n)$ random bits and for all numbers, generating the permutation we need $O(nlogn)$.
 \\ \newline
+\newline
+The other way of getting random permutation is to swap the $i$ element with a randomly chosen element of index 1 to n. And do the swap n time from i to n element. In this way, every term, we need $log(n)$ bits each time to determine the index of the element to swap with $i$ element, and we do the swap in n turns. In all we need $O(nlogn)$.
+\\ \newline
 \textbf{(b) Now assume that there is a limited source of at most $n^2$ random bits. Show that there is no algorithm that can solve the problem using expected time $O(n^2)$.}
-
+\newline
+I don't think so... if we have 1, 2, 3 and have 9 random bits, if we use the second method, each turn, we need 2 bits to decide the element to swap with i element and 3 turns to get random permutation, in all it needs 6 bits which is smaller than 9 bits.
 
 \end{document}
