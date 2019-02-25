@@ -18,9 +18,9 @@ Deniz Unal (des2014)}
 \textbf{(a) Something} \\ \newline
 Answer: $f_s$ is the defined as the number of times that the router has seen a packet with IP sources, and $\^f_s$ is our estimation defined as $min_{j\in[1,t]}{T[j,h_j(s)]}$. If for all of the hash function $h_1$ to $h_t$, there never exist such hash collision where the counter falls into the same bucket of IP, then $\^f_s = f_s$. Otherwise, if such collusion exist for all $h_1$ to $h_t$, then $\^f_s > f_s$. In short, for all hash functions, the counter would be at least the packets that have IP, and might be greater if they all have counter that is not this IP.\\ \newline
 \textbf{(b) Something}\\ \newline
-Answer: something\\ \newline
+Answer: Since for $h_1$ to $h_t$, we have the range of $[1,k]$, and these functions are picked uniformly at random from the class of universal hash functions, we assume the likelihood of falling into one bucket is $1/k$. In all there are $n$ IP address, and $f_s$ is the defined as the number of times that the router has seen a packet with IP sources. So $E(Y_{i,j}) =(n-f_s)/n * 1/k = (n-f_s)/(n*k)$.\\ \newline
 \textbf{(c) Something} \\ \newline
-Answer: Using linearity of expectations, knowing $Y_i = \sum_{j} Y_{i,j}$, $E(Y_{i,j}) =  \sum_{j} E(Y_{i,j})$}. From (b), $E(Y_{i,j}) = (n-f_s)/(n*k)$,  $E(Y_{i,j}) =  \sum_{j} E(Y_{i,j}) =(n-f_s)/(n*k) * n =  (n-f_s)/k$.\\ \newline
+Answer: Using linearity of expectations, knowing $Y_i = \sum_{j} Y_{i,j}$, $E(Y_{i,j}) =  \sum_{j} E(Y_{i,j})$. From (b), $E(Y_{i,j}) = (n-f_s)/(n*k)$,  $E(Y_{i,j}) =  \sum_{j} E(Y_{i,j}) =(n-f_s)/(n*k) * n =  (n-f_s)/k$.\\ \newline
 \textbf{(d) Something} \\ \newline
 Answer: something\\ \newline
 \textbf{(e) Something} \\ \newline
