@@ -19,7 +19,7 @@ Answer: Since for $h_1$ to $h_t$, we have the range of $[1,k]$, and these functi
 \textbf{(c) Let $Y_i = \sum_jY_{i,j}$. Show using linearity of expectations that the $E[Y_i] = (n - f_s)/k$.} \\ \newline
 Answer: Using linearity of expectations, knowing $Y_i = \sum_{j} Y_{i,j}$, $E(Y_{i,j}) =  \sum_{j} E(Y_{i,j})$. From (b), $E(Y_{i,j}) = (n-f_s)/(n*k)$,  $E(Y_{i,j}) =  \sum_{j} E(Y_{i,j}) =(n-f_s)/(n*k) * n =  (n-f_s)/k$.\\ \newline
 \textbf{(d) Show that $Prob[Y_i \geq \epsilon n] \leq (n - f_s)/(\epsilon nk)$}. \\ \newline
-Answer: \\ \newline
+Answer: In order to have $Prob[Y_i \geq \epsilon n]$, we need to have $Prob[U_{j=1}^{n}Y_{i,j}\geq \epsilon n]$. It means we have $Prob[Y_i \geq \epsilon n]\leq \sum_{j=1}^{n}Prob[U_{j=1}^{n}Y_{i,j}\geq \epsilon n]$. So we have $Prob[Y_i \geq \epsilon n]\leq n*Prob[U_{j=1}^{n}Y_{i,j}\geq \epsilon n]$. Since wen have $Prob[U_{j=1}^{n}Y_{i,j}] \leq \frac{E[Y_{i,j}]}{\epsilon n}$ and from (b) we learn that $E[Y_{i,j}] = (n - f_s)/(n*k)$, so we can say $$Prob[Y_i \geq \epsilon n]\leq n*Prob[U_{j=1}^{n}Y_{i,j} \leq (n - f_s)/(\epsilon nk)$$.\\ \newline
 \textbf{(e) Show that if $k = 2/\epsilon$, then $Prob[Y_i \geq \epsilon n] \leq 1/2$}. \\ \newline
 Answer: From (d), we know that $Prob[Y_i>=\epsilon n] <= (n-f_s)/(\epsilon nk)$, given $k = 2/\epsilon$, we have $Prob[Y_i>=\epsilon n] <= (n-f_s)/(\epsilon nk) = (n-f_s)/(\epsilon n 2/\epsilon) = (n-f_s)/(2n)$, since $f_s>=0$,  $Prob[Y_i>=\epsilon n] > = (n-f_s)/(2n) >=1/2$.\\ \newline
 \textbf{(f) Show that if $k = lg1/\delta$, then $Prob[Y_i \geq \epsilon n] \leq \delta$} \\ \newline
