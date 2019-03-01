@@ -6,7 +6,7 @@
 \title{Assignment 18}
 \author{Xiaoting Li (xil139) \\
 Ziyu Zhang (ziz41) \\
-Deniz Unal (des2014)}
+Deniz Unal (des204)}
 \date{March 1, 2019}
 
 \begin{document}
@@ -32,6 +32,7 @@ If we divide both sides by lgn, we get,
 3 &< \frac{c}{\lg\lg n}(\lg c + \lg\lg n - \lg\lg\lg n - \lg e) \\
 &= c(1 + \frac{\lg c - \lg e}{\lg\lg n} - \frac{\lg\lg\lg n}{\lg\lg n}).
 \end{align*}
+<<<<<<< HEAD
 Let x be $(1 + \frac{\lg c - \lg e}{\lg\lg n} - \frac{\lg\lg\lg n}{\lg\lg n})$. We need to show that there exists a $c > 1$ such that $3 < cx$. As n goes to infinity, logarithmic terms inside of $x$ will be zeroed out and $x$ will be 1. Therefore minimum $c$ value that satisfies this inequality will be 4, so it is our lower bound for $c$. Let $c_i$ be the value that satisfies the inequality for $n = i$. Then c will be the max of $c_i$ and 4. \\ \newline
 In subproblem (b) we showed that $P_k \leq nQ_{k_0}$ and from this step we could show $Q_{k_0} < 1/n^3$. So, $nQ_{k_0} < n/n^3 = 1/n^2$. Then $P_k < 1/n^2$ for all $k \geq k_0$ as $Q_k$ is a decreasing function of k. \\ \newline
 \textbf{e.} We have the expected value of $M$ as 
@@ -55,4 +56,8 @@ In (d) we learn that $P_k < 1/n^2$ for $k \geq k_0 = clgn/lglgn$. So we have
 \end{align*}
 So we can rewrite $E[M]$ as $E]M] < k_0 \cdot 1 + n\cdot 1/n = O(lgn/lglgn)$
 
+=======
+Let x be $(1 + \frac{\lg c - \lg e}{\lg\lg n} - \frac{\lg\lg\lg n}{\lg\lg n})$. We need to show that there exists a $c > 1$ such that $3 < cx$. As n goes to infinity, logarithmic terms inside of $x$ will be zeroed out and $x$ will be 1. Therefore minimum $c$ value that satisfies this inequality will be 4 so it is our lower bound for $c$. Let $c_i$ be the value that satisfies the inequality for $n = i$. Then c will be the max of $c_i$ and 4. \\
+In subproblem (b) we showed that $P_k \leq nQ_{k_0}$ and from this step we could show $Q_{k_0} < 1/n^3$. So, $nQ_{k_0} < n/n^3 = 1/n^2$. Then $P_k < 1/n^2$ for all $k \geq k_0$ as $Q_k$ is a decreasing function of k.
+>>>>>>> 08a306da5dd3fd7d6d427914bd55d8cad1dc1013
 \end{document}
