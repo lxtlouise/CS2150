@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Assignment 18}
+\author{Xiaoting Li (xil139) \\
+Ziyu Zhang (ziz41) \\
+Deniz Unal (des2014)}
+\date{March 1, 2019}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{29. 11-2 from CLRS.}\\ \newline
+\textbf{a.} In order to have exactly $k$ keys hash to a particular slot, we need to pick $k$ keys from $n$ keys. The probability of a key being hashed into a particular slot is $\frac{1}{n}$ and the probability of a key not being hashed into a particular slot is $1 - \frac{1}{n}$. So the probability $Q_k$ that exactly k keys hash to a particular slot is $\big(\frac{1}{n})^k\big(1 - \frac{1}{n})^{n-k}\big(_k^n)$. \\ \newline 
+\textbf{b.} Let $X_i$ be the number of keys that are hashed to slot $i$, $i = 1, 2, 3, ..., n$. So we have $P_k = Prob(M = k)$. Since $M$ is the maximum number of keys in any slot after all the keys have been inserted. We have $$P_k = Prob(M = k) \leq Prob[U_{i=1}^{n}X_i = k] = \sum_{i=1}^{n}Prob[U_{i=1}^{n}X_i = k]$$
+From (a) we know that $Q_k = \big(\frac{1}{n})^k\big(1 - \frac{1}{n})^{n-k}\big(_k^n)$. So we plug this into the equation above and we can get $P_k \leq nQ_k$. \\ \newline
+\textbf{c.} We can rewrite $Q_k$ as $\big(\frac{1}{n})^k\big(1 - \frac{1}{n})^{n-k}\frac{n!}{k!(n-k)!}$. Since $\frac{1}{n})^{n-k}$ is smaller than one, we get $$\big(\frac{1}{n})^k\big(1 - \frac{1}{n})^{n-k}\frac{n!}{k!(n-k)!} \leq \big(\frac{1}{n})^k \frac{n!}{k!(n-k)!}$$
+Since the weak upper bound on the factorial function is $n! \leq n^n$, we can rewrite the equation above as: $$\big(\frac{1}{n})^k\big(1 - \frac{1}{n})^{n-k}\frac{n!}{k!(n-k)!} \leq \frac{n^{n-k}}{k!(n - k)!}$$
+Since $n^{n-k}$ is larger than $(n - k)!$, we get $$\big(\frac{1}{n})^k\big(1 - \frac{1}{n})^{n-k}\frac{n!}{k!(n-k)!} \leq \frac{1}{k!}$$
+Using Stirling Approximation, we learn that $n! = \sqrt{2\pi n}\big(\frac{n}{e})^n e^{\alpha_n}$. So we can say $k! > \big(\frac{k}{e})^k$. Plug this into the equation above, we get 
+$$Q_k = \big(\frac{1}{n})^k\big(1 - \frac{1}{n})^{n-k}\frac{n!}{k!(n-k)!} \leq \frac{1}{k!} < e^k/k^k$$
+\textbf{d.}
+
+\end{document}
