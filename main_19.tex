@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Assignment 19}
+\author{Xiaoting Li (xil139) \\
+Ziyu Zhang (ziz41) \\
+Deniz Unal (des2014)}
+\date{March 4, 2019}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{30.} \\ \newline
+\textbf{(a)} \\ \newline
+\textbf{(b)} Since $F = max_iY_i$, so $Prob[F \geq L/D]$ is the probability of $F \geq L/D$. $\sum_e\sum_tProb[F_{e,t} \geq L/D]$ is the probability when the number of packets waiting to cross an edge $e$ at time $t$ is greater than $L/D$ on all of the edges at all the time, which is maximum value of the probability. Since the value of $F_{e,t}$ varies on different edges at different time, so we have $Prob[F \geq L/D] \leq \sum_e\sum_tProb[F_{e,t} \geq L/D]$.\\ \newline
+\textbf{(c)}\\ \newline
+\textbf{(d)} (i) In Bernoulli trials, the result of each trial is either one or zero. In our case, $x_{i,e,t}$ is the random 0/1 variable that is equal to 1 if packet $i$ cross edge $e
+$ at time $t$. In addition, $i\in [1, C]$ and each packet is initially delayed by an amount of time that is selected uniformly and independently from the range $[0,C]$ before it starts moving. So $x_{i,e,t}$ meets the properties of Bernoulli trial. We can conclude that $x_{1,e,t}, x_{2,e,t}, ... , x{C,e,t}$ are Bernoulli trials.\\ \newline
+\textbf{(e)} \\ \newline
+\textbf{(f)} \\ \newline
+\textbf{(h)} \\ \newline
+
+\end{document}
