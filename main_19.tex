@@ -3,49 +3,35 @@
 \usepackage{amsmath}
 \usepackage{mathtools}
 
-\title{Assignment 19}
+\title{Assignment 20}
 \author{Xiaoting Li (xil139) \\
 Ziyu Zhang (ziz41) \\
 Deniz Unal (des2014)}
-\date{March 4, 2019}
+\date{March 6 2019}
 
 \begin{document}
 
 \maketitle
 
 \noindent
-\textbf{30.} \\ \newline
-\textbf{(a)} $E[y] = Prob(Y\leq L/D) * (L/D) + Prob(Y \geq L/D) * CD$ 
-\newline
-$Prob(Y\leq L/D) * (L/D) + Prob(Y \geq L/D) * CD \leq Prob(Y\leq L/D) * L + Prob(Y \geq L/D) * CD$ 
-\newline
-$ Prob(Y\leq L/D) * L + Prob(Y \geq L/D) * CD \leq L + Prob(Y \geq L/D) * CD$
-\newline
-$ L + Prob(Y \geq L/D) * CD \leq L + Prob(\sum_{i = 1}^{n} Y_i \geq L/D) *CD$
-\newline
-$ L + Prob(\sum_{i = 1}^{n} Y_i \geq L/D) \leq L + \sum_{i = 1}^{n} Prob[F \geq L/D]$
-\newline
-$ L + \sum_{i = 1}^{n} Prob[F \geq L/D] \leq L + n* 1/(CDn)^6 *CD$
-\newline
-$ L + n* 1/(CDn)^6 *CD \leq 20L$
-\\ \newline
-\textbf{(b)} Since $F = max_iY_i$, so $Prob[F \geq L/D]$ is the probability of $F \geq L/D$. $\sum_e\sum_tProb[F_{e,t} \geq L/D]$ is the probability when the number of packets waiting to cross an edge $e$ at time $t$ is greater than $L/D$ on all of the edges at all the time, which is maximum value of the probability. Since the value of $F_{e,t}$ varies on different edges at different time, so we have $Prob[F \geq L/D] \leq \sum_e\sum_tProb[F_{e,t} \geq L/D]$.\\ \newline
-\textbf{(c)} We know $\sum_e\sum_tProb[F_{e,t} \geq L/D]$ means the number of packets waiting to cross edge $e$ at time $t$ and from (b) we learn that $Prob[F \geq L/D] \leq \sum_e\sum_tProb[F_{e,t} \geq L/D]$. So we have the following equations, $(nD)$ is the number of possible choices for the edge $e$ and $(C + D)$ is the number of choices for the time step $t$.
+\textbf{31. (a)Consider the problem where the input is a sorted array $A$ containing $n$ real numbers and a real number $x$, and the output is an integer $k$ such that if $x$ is in $A$ then it must lie between positions $k$ and $k + \sqrt{n}$. Assume that each element of $A$ and $x$ are independently and uniformly distributed in the interval [0, 1]. Show that the following algorithm solves this problem in $O(1)$ average case time.} \\ \newline 
+Answer: Let $X$ be the number of comparisons to find $k$, $X_i$ means the number of comparisons to find $k$ for number $i$. Since it is Bernoulli trials, the expectation of $E(X_i) = 1/(1/\sqrt{n}) = \sqrt{n}$. Using Bernoff Bound, We have
 \begin{align*}
-&Prob[F\geq L/D] \leq \sum_e\sum_tProb[F_{e,t} \geq L/D] \\
-&\leq(CDn)^{12}(nD)(C + D)
-\end{align*}\\ \newline
-\textbf{(d)} (i) In Bernoulli trials, the result of each trial is either one or zero. In our case, $x_{i,e,t}$ is the random 0/1 variable that is equal to 1 if packet $i$ cross edge $e
-$ at time $t$. In addition, $i\in [1, C]$ and each packet is initially delayed by an amount of time that is selected uniformly and independently from the range $[0,C]$ before it starts moving. Since the capacity of each edge is infinite, each packet only needs to wait for the initially assigned delay and travels certain length to get to destination without waiting to any other node's queue. Each $x_{i,e,t}$ is independent. So $x_{i,e,t}$ meets the properties of Bernoulli trial. We can conclude that $x_{1,e,t}, x_{2,e,t}, ... , x_{C,e,t}$ are Bernoulli trials.\\ \newline 
-(ii) We learn that for an edge $e$, it is used at most $C$ paths. And since we are given the range of the initial delay time, we know that the probability of $(L/D)$ packets go through this edge at time $t$ is $\big(\frac{1}{C})^{L/D}$.
+&E(X) = Prob(X \leq \sqrt{n})\cdot \sqrt{n} + Prob(X > \sqrt{n})\cdot(2\sqrt{n} - 1) \\
+&\leq Prob(X \leq \sqrt{n})\cdot \sqrt{n} + Prob(X > \sqrt{n}) \cdot (2\sqrt{n} - 1)\\
+&\leq Prob(X \leq \sqrt{n})\cdot \sqrt{n} + Prob(X > \sqrt{n}) \cdot 2\sqrt{n}\\
+&\leq Prob(X \leq \sqrt{n})\cdot \sqrt{n} + Prob\{X - \sqrt{n}\geq r\}\cdot 2\sqrt{n}\\
+&\leq 2e^{-r^2/2n}
+\end{align*}
+Let's set $r$ as a small number greater than 0, $r = \sqrt{ln\frac{1}{\sqrt{n}}}\cdot \sqrt{n}$. Plug $r$ into the equation above, and we can get 
 \begin{align*}
-&Prob[F_{e,t} \geq L/D] = \big(_{L/D}^C)\big(\frac{1}{C})^{L/D} \\
-&=\frac{C!}{(L/D)!(C - L/D)!}\big(1/C)^{L/D}\\
-&\leq \frac{e^{L/D}}{(L/D)^{L/D}}
+&E(X) = Prob(X \leq \sqrt{n})\cdot \sqrt{n} + Prob(X > \sqrt{n})\cdot(2\sqrt{n} - 1)\\
+&\leq 2e^{-r^2/2n}\\
+&=2\cdot2\cdot e^{-1/2}\\
+&= O(1)
 \end{align*}\newline
-\textbf{(e)} When the capacity of each edge is one and using FIFO at each edge to decide which packet goes next if there is congestion means that each $x_{i,e,t}$ is no longer independent. Besides the initially assigned delay and the steps to take to travel to destination, each $x_{i,e,t}$ may be influenced by any other node's queue, which means each $x_{i,e,t}$ is dependent on other packets. So $x_{1,e,t}, x_{2,e,t}, ... , x{C,e,t}$ are not necessarily Bernoulli trials.\\ \newline
-\textbf{(f)} We couldn't come up with a scheme, but the goal would be lower $Prob(Y \geq L/D)$, which makes $E[y] = Prob(Y\leq L/D) * (L/D) + Prob(Y \geq L/D) * CD$  lower and $E[y]\leq 2L$.
-\\ \newline
-\textbf{(h)} \\ \newline
+\textbf{(b) Explain how to use the above algorithm to obtain an algorithm with $O(log log n)$ average case running time for the searching problem (finding the location of the element in $A$ whose value is closest to $x$). Again assume that each element of $A$ and $x$ are independently and uniformly distributed in the interval [0, 1].}\\ \newline
+Answer: Build a binary search tree $T$ using the sorted array A. And then search $k$ in the following way: start with last = $x*n$, if in the search tree, $T[last]$ is smaller than $x$, than jump to left tree at level $T[last] + log(n)$ to do the comparison until we find value larger than $x$, then return that position as $k$. 
+
 
 \end{document}
