@@ -15,7 +15,20 @@ Deniz Unal (des2014)}
 
 \noindent
 \textbf{30.} \\ \newline
-\textbf{(a)} \\ \newline
+\textbf{(a)} $E[y] = Prob(Y\leq L/D) * (L/D) + Prob(Y \geq L/D) * CD$ 
+\newline
+$Prob(Y\leq L/D) * (L/D) + Prob(Y \geq L/D) * CD \leq Prob(Y\leq L/D) * L + Prob(Y \geq L/D) * CD$ 
+\newline
+$ Prob(Y\leq L/D) * L + Prob(Y \geq L/D) * CD \leq L + Prob(Y \geq L/D) * CD$
+\newline
+$ L + Prob(Y \geq L/D) * CD \leq L + Prob(\sum_{i = 1}^{n} Y_i \geq L/D) *CD$
+\newline
+$ L + Prob(\sum_{i = 1}^{n} Y_i \geq L/D) \leq L + \sum_{i = 1}^{n} Prob[F \geq L/D]$
+\newline
+$ L + \sum_{i = 1}^{n} Prob[F \geq L/D] \leq L + n* 1/(CDn)^6 *CD$
+\newline
+$ L + n* 1/(CDn)^6 *CD \leq 20L$
+\\ \newline
 \textbf{(b)} Since $F = max_iY_i$, so $Prob[F \geq L/D]$ is the probability of $F \geq L/D$. $\sum_e\sum_tProb[F_{e,t} \geq L/D]$ is the probability when the number of packets waiting to cross an edge $e$ at time $t$ is greater than $L/D$ on all of the edges at all the time, which is maximum value of the probability. Since the value of $F_{e,t}$ varies on different edges at different time, so we have $Prob[F \geq L/D] \leq \sum_e\sum_tProb[F_{e,t} \geq L/D]$.\\ \newline
 \textbf{(c)} We know $\sum_e\sum_tProb[F_{e,t} \geq L/D]$ means the number of packets waiting to cross edge $e$ at time $t$ and from (b) we learn that $Prob[F \geq L/D] \leq \sum_e\sum_tProb[F_{e,t} \geq L/D]$. So we have the following equations, $(nD)$ is the number of possible choices for the edge $e$ and $(C + D)$ is the number of choices for the time step $t$.
 \begin{align*}
@@ -31,7 +44,8 @@ $ at time $t$. In addition, $i\in [1, C]$ and each packet is initially delayed b
 &\leq \frac{e^{L/D}}{(L/D)^{L/D}}
 \end{align*}\newline
 \textbf{(e)} When the capacity of each edge is one and using FIFO at each edge to decide which packet goes next if there is congestion means that each $x_{i,e,t}$ is no longer independent. Besides the initially assigned delay and the steps to take to travel to destination, each $x_{i,e,t}$ may be influenced by any other node's queue, which means each $x_{i,e,t}$ is dependent on other packets. So $x_{1,e,t}, x_{2,e,t}, ... , x{C,e,t}$ are not necessarily Bernoulli trials.\\ \newline
-\textbf{(f)} \\ \newline
+\textbf{(f)} We couldn't come up with a scheme, but the goal would be lower $Prob(Y \geq L/D)$, which makes $E[y] = Prob(Y\leq L/D) * (L/D) + Prob(Y \geq L/D) * CD$  lower and $E[y]\leq 2L$.
+\\ \newline
 \textbf{(h)} \\ \newline
 
 \end{document}
