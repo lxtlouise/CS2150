@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\title{Assignment 20}
+\author{Xiaoting Li (xil139) \\
+Ziyu Zhang (ziz41) \\
+Deniz Unal (des2014)}
+\date{March 6 2019}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{31. (a)Consider the problem where the input is a sorted array $A$ containing $n$ real numbers and a real number $x$, and the output is an integer $k$ such that if $x$ is in $A$ then it must lie between positions $k$ and $k + \sqrt{n}$. Assume that each element of $A$ and $x$ are independently and uniformly distributed in the interval [0, 1]. Show that the following algorithm solves this problem in $O(1)$ average case time.} \\ \newline 
+Answer: Let $M$ be the maximum number of comparisons to find $k$ (bad events). Since it is Bernoulli trials, the expectation of each trial is $1/(1/\sqrt{n}) = \sqrt{n}$. So we have
+\begin{align*}
+&Prob(M > \sqrt{n}) \cdot (2\sqrt{n} - 1)\\
+&\leq Prob(M > \sqrt{n}) \cdot 2\sqrt{n}\\
+&\leq Prob\{M - \sqrt{n}\geq r\}\cdot 2\sqrt{n}\\
+&\leq e^{-r^2/2n}
+\end{align*}
+Let's set $r$ as a small number greater than 0, $r = \sqrt{ln\frac{1}{\sqrt{n}}}\cdot \sqrt{n}$. Plug $r$ into the equation above, and we can get 
+\begin{align*}
+&Prob(M > \sqrt{n}) \cdot (2\sqrt{n} - 1)\\
+&\leq e^{-r^2/2n}\\
+&=2\cdot e^{-1/2}\\
+&= O(1)
+\end{align*}\newline
+\textbf{(b) Explain how to use the above algorithm to obtain an algorithm with $O(log log n)$ average case running time for the searching problem (finding the location of the element in $A$ whose value is closest to $x$). Again assume that each element of $A$ and $x$ are independently and uniformly distributed in the interval [0, 1].}\\ \newline
+Answer: Build a binary search tree $T$ using the sorted array A. And then search $k$ in the following way: start with last = $x*n$, if in the search tree, $T[last]$ is smaller than $x$, than jump to left tree at level $T[last] + log(n)$ to do the comparison until we find value larger than $x$, then return that position as $k$. 
+
+
+\end{document}
