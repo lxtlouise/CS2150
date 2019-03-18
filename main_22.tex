@@ -37,6 +37,12 @@ Answer:  We assume that there exists a protocol that is capable of solving the p
 \textbf{(d) Show that there is no protocol that can solve this problem that involves $A$ sending one bit to $B$. And no more bits are exchanged.} \\ \newline
 Answer: We assume there is a protocol that is capable of solving this problem by $A$ sending one bit to $B$. If the bit that $A$ sends is 0, then it should mean the two lists $L_A$ and $L_B$ are identical. Then the adversarial strategy can show one $L_B$ that is not identical with $L_A$. In contrast, if the bit that $A$ sends is 1, then it should mean $L_A$ and $L_B$ are not identical and the adversarial strategy can make $L_B = L_A$. Then, we can say for a protocol that involves sending a single bit, it is incorrect. \\ \newline
 \textbf{(e) Show that there is no protocol that can solve this problem that involves $A$ sending one bit to $B$ and $B$ replying with one bit to $A$. And no more bits are exchanged.} \\ \newline
+Answer: We assume there is a protocol that is capable of solving this problem that involves $A$ sending one bit to $B$ and $B$ replying with one bit. There are four possibilities: \\
+1) If $A$ sends 1 and $B$ replies with 0, it means that $L_A$ and $L_B$ are identical. The adversarial strategy can show one $L_A$ that is not identical to $L_B$. \\
+2) If $A$ sends 1 and $B$ replies with 1, it means that $L_A$ and $L_B$ are not identical. The adversarial strategy can show one $L_A = L_B$. \\
+3) If $A$ sends 0 and $B$ replies with 0, it means that $L_A$ and $L_B$ are identical. The adversarial strategy can show one $L_A$ that is not identical to $L_B$. \\
+4) If $A$ sends 0 and $B$ replies with 1, it means that $L_A$ and $L_B$ are not identical. The adversarial strategy can show one $L_A = L_B$. \\
+In all 4 possibilities, the adversarial strategy showed inconsistent results which implies that this protocol cannot be correct. \\ \newline
 \textbf{(f) Prove that every protocol for this problem must send $2^n - O(1)$ bits for its worst case instance. Of course your proof should involve an adversarial argument.} \\ \newline
 \textbf{(g) Show that if $k\leq 2n$ then every algorithm must use $\Omega(k)$ bits of memory.} \\ \newline
 
