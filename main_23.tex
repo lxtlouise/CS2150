@@ -1,6 +1,8 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{mathtools}
+\usepackage{amsmath}
+
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 \title{Assignment 23}
@@ -15,13 +17,14 @@ Deniz Unal (des204)}
 
 \noindent
 \textbf{36. Let $P$ be a problem. The worst case time complexity of $P$ is $O(n^2)$. The worst case time complexity of $P$ is $\omega(nlogn)$. Let $A$ be an algorithm that solves $P$ . For each of the following statements, state whether the statement is logically implied by the above information, and state whether the statement is logically consistent with the above information. Justify your answers.} \\ \newline
+
 $P$ is $O(n^2)$ means that there exists positive constants $c$ and $n_0$ such that for all $n\geq n_0$, $0\leq P \leq c n^2$, P is $\omega(nlogn)$ means that for any $c>0$, there exists a constant $n_0$ such that for all $n\geq n_0$, $0\leq c n logn < P$. \\ \newline
 \textbf{(a) A has worst case time complexity $O(n^3)$.}\\ \newline
 This one is not logically consistent with the above information. Since $A$ is an algorithm that solves $P$. It means we can call $A$ in $P$. And since the worst case time complexity of $P$ is $O(n^2)$, the worst case time of $A$ cannot be higher than $O(n^2)$.\\ \newline
 \textbf{(b) A has worst case time complexity $\Omega(n^3)$.} \\ \newline
 This one is not logically consistent with the above information Since $A$ is an algorithm that solves $P$. It means we can call $A$ in $P$. And since the worst case time complexity of $P$ is $\omega(nlogn)$, the worst case time of $A$ cannot be higher than $\Omega(nlogn)$.\\ \newline
 \textbf{(c) A has worst case time complexity $\Theta(n^3)$.} \\ \newline
-Since either (a) or (b) is true, so this can not be true. 
+Since either (a) or (b) is true, so this can not be true.
 \\ \newline
 \textbf{(d) A has worst case time complexity $O(nlogn)$.} \\ \newline This one is logically consistent with the above information. Since $A$ is an algorithm that solves $P$. It means we can call $A$ in $P$. And since the worst case time complexity of $P$ is $O(n^2)$, and the worst case time complexity of $A$ is $O(nlogn) \subset O(n^2)$.\\ \newline
 \textbf{(e) A has worst case time complexity $\Omega(nlogn)$.} \\ \newline
@@ -35,15 +38,59 @@ This one is logically consistent with the above information. Since the worst cas
 \textbf{37. Consider the element uniqueness problem. In this problem the input is $n$ real numbers $x_1,..., x_n$, and the problem is to determine whether there exists an $i$ and a $j$ such that $i\neq j$ and $x_i = x_j$.}\\\newline
 \textbf{(a) Give an input distribution such every comparison-based deterministic correct algorithm requires $\Omega(nlogn)$ comparisons in expectation.} \\ \newline
 Answer: If the input distribution is uniform distribution, then every comparison-based deterministic correct algorithm requires $\Omega(nlogn)$ comparisons in expectation. If the input distribution is uniform distribution, we have the average case of number of comparison as at least $\floor{log_2n!}$. We can use recursive call tree to prove that the average depth of the tree is at least $\floor{log_2n!}$. The number of leaves is $n!$. The height of the tree is the number of comparisons to reach a leaf. If the tree is balanced, then it's straightforward that the average height is $\floor{log_2n!}$. If it is unbalanced, we can modify the tree and also get the average depth as at least $\floor{log_2n!}$. So we have $\Omega(nlogn)$ comparisons in expectation.\\ \newline
+
+\textbf{(0)} P is of $O(n^2)$ it means that there exist positive constants $c$ and $n_0$ such that for all $n\geq n_0$, $0\leq P \leq c n^2$, P is of $w(nlogn)$ it means that for any $c>0$, there exist a constant $n_0$ such that for all $n\geq n_0$, $0\leq c n logn < P$. \\ \newline
+\textbf{(a)} This one is not logically consistent with the above information. Since $A$ is an algorithm that solves $P$. It means we can call $A$ in $P$. And since the worst case time complexity of $P$ is $O(n^2)$, the worst case time of $A$ cannot be higher than $O(n^2)$.\\ \newline
+there exist positive constants $c$ and $n_0$ such that for all $n\geq n_0$, $0\leq P \leq c n^2 \leq c n^3$, so it is true.
+\\ \newline
+\textbf{(b)} This one is not logically consistent with the above information Since $A$ is an algorithm that solves $P$. It means we can call $A$ in $P$. And since the worst case time complexity of $P$ is $\omega(nlogn)$, the worst case time of $A$ cannot be higher than $\Omega(nlogn)$. \\ \newline
+\newline
+for any $c>0$, there exist a constant $n_0$ such that for all $n\geq n_0$, $0\leq c n logn < P$, but it does not guarantee $0\leq c n^3 \leq P$, so it is not true. \\ \newline
+\textbf{(c)} \\ \newline
+(b) is not true, so this can not be true.there exist positive constants $c$ and $n_0$ such that for all $n\geq n_0$, $0\leq P \leq c n^2 \leq c n^3 $, but we also need $n^3 \leq P$ which is not guaranteed, so it is not true.
+\\ \newline
+
+\textbf{(d)} This one is logically consistent with the above information. Since $A$ is an algorithm that solves $P$. It means we can call $A$ in $P$. And since the worst case time complexity of $P$ is $O(n^2)$, and the worst case time complexity of $A$ is $O(nlogn)$.\\ \newline
+there exist positive constants $c$ and $n_0$ such that for all $n\geq n_0$, $0\leq P \leq c n^2 $, but it does not guarantee $P \leq c n logn$, so it is not true.
+\\ \newline
+\textbf{(e)} This one is logically consistent with the above information. $\Omega(nlogn)$ is tigher bound than $\omega(nlogn)$\\ \newline
+for any $c>0$, there exist a constant $n_0$ such that for all $n\geq n_0$, $0\leq c n logn < P \leq P$, so it is true. \\ \newline
+
+\textbf{(f)} \\ \newline
+(d) is not true, so this can not be true. there exist positive constants $c$ and $n_0$ such that for all $n\geq n_0$, $0\leq P \leq c n^2 $, but it does not guarantee $ P \leq nlogn$ , so it is not true.
+\\ \newline
+
+\textbf{(g)} This one is logically consistent with the above information.\\ \newline
+there exist positive constants $c$ and $n_0$ such that for all $n\geq n_0$, $0\leq P \leq c n^2 $, but it does not guarantee $P \leq c n$, so it is not true.
+\\ \newline
+
+\textbf{(h)} This one is logically consistent with the above information.\\ \newline
+for any $c>0$, there exist a constant $n_0$ such that for all $n\geq n_0$, $0\leq cn\leq c n logn < P $, so it is true. \\ \newline
+
+\textbf{(i)} This one is logically consistent with the above information.\\ \newline
+(g) is not true, so this can not be true. there exist positive constants $c$ and $n_0$ such that for all $n\geq n_0$, $0\leq P \leq c n^2 $, but it does not guarantee $ P \leq n$ , so it is not true.
+
+\textbf{37. Consider the element uniqueness problem. In this problem the input is $n$ real numbers $x_1,..., x_n$, and the problem is to determine whether there exists an $i$ and a $j$ such that $i\neq j$ and $x_i = x_j$.}\\\newline
+\textbf{(a) Give an input distribution such every comparison-based deterministic correct algorithm requires $\Omega(nlogn)$ comparisons in expectation.} \\ \newline
+Answer: If the input distribution is uniform distribution, then every comparison-based deterministic correct algorithm requires $\Omega(nlogn)$ comparisons in expectation. If the input distribution is uniform distribution, we have the average case of number of comparison as at least $\floor{log_2n!}$. We can use recursive call tree to prove that the average depth of the tree is at least $\floor{log_2n!}$. If the tree is balanced, then it's straightforward that the average height is $\floor{log_2n!}$. If it is unbalanced, we can modify the tree and also get the average depth as at least $\floor{log_2n!}$. So we have $\Omega(nlogn)$ comparisons in expectation. \\ \newline
+
 \textbf{(b) Conclude using Yao’s technique to show that every comparison-based Las Vegas algorithm for this problem requires $\Omega(nlogn)$ comparisons.} \\ \newline
 Answer: Let A be a correct deterministic comparison based algorithm that solves element uniqueness problem, and a is a comparison based Las Vegas algorithm for this problem, let I be an input and $\lambda$ be an input distribution. If we want to show that every comparison based Las Vegas algorithm for this problem requires $\Omega(nlogn)$ comparisons, it means the least cost Las Vegas algorithm (over the worst input) to solve this problem would also require $\Omega(nlogn)$ comparisons. If we write this as a formula:
 \begin{flalign*}
 &min_a \, max_I \, E[a(I)] \geq nlogn \\
-= &min_a \, max_{\lambda} \, E_{\lambda}[a(\lambda)] \\ 
+
+= &min_a \, max_{\lambda} \, E_{\lambda}[a(\lambda)] \\
 \end{flalign*}
-From strong LP duality we have, 
+From strong LP duality we have,
 \begin{flalign*}
-&min_a \, max_{\lambda} \, E_{\lambda}[a(\lambda)] \\ 
+&min_a \, max_{\lambda} \, E_{\lambda}[a(\lambda)] \\
+
+= &min_a \, max_{\lambda} \, E_{\lambda}[a(\lambda)] \\ 
+\end{flalign*}
+From strong LP duality we have,
+\begin{flalign*}
+&min_a \, max_{\lambda} \, E_{\lambda}[a(\lambda)] \\ 
+
 = &max_{\lambda} \, min_a \, E_{\lambda}[a(\lambda)] \\
 = &max_{\lambda} \, min_A \, E_{\lambda}[A(\lambda)] \\
 \end{flalign*}
