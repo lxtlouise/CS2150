@@ -1,6 +1,8 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{mathtools}
+\usepackage{amsmath}
+
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 \title{Assignment 23}
@@ -26,6 +28,18 @@ Deniz Unal (des204)}
 \textbf{(i)} This one is logically consistent with the above information.\\ \newline
 \textbf{37. Consider the element uniqueness problem. In this problem the input is $n$ real numbers $x_1,..., x_n$, and the problem is to determine whether there exists an $i$ and a $j$ such that $i\neq j$ and $x_i = x_j$.}\\\newline
 \textbf{(a) Give an input distribution such every comparison-based deterministic correct algorithm requires $\Omega(nlogn)$ comparisons in expectation.} \\ \newline
-Answer: If the input distribution is uniform distribution, then every comparison-based deterministic correct algorithm requires $\Omega(nlogn)$ comparisons in expectation. If the input distribution is uniform distribution, we have the average case of number of comparison as at least $\floor{log_2n!}$. We can use recursive call tree to prove that the average depth of the tree is at least $\floor{log_2n!}$. If the tree is balanced, then it's straightforward that the average height is $\floor{log_2n!}$. If it is unbalanced, we can modify the tree and also get the average depth as at least $\floor{log_2n!}$. So we have $\Omega(nlogn)$ comparisons in expectation.
-
+Answer: If the input distribution is uniform distribution, then every comparison-based deterministic correct algorithm requires $\Omega(nlogn)$ comparisons in expectation. If the input distribution is uniform distribution, we have the average case of number of comparison as at least $\floor{log_2n!}$. We can use recursive call tree to prove that the average depth of the tree is at least $\floor{log_2n!}$. If the tree is balanced, then it's straightforward that the average height is $\floor{log_2n!}$. If it is unbalanced, we can modify the tree and also get the average depth as at least $\floor{log_2n!}$. So we have $\Omega(nlogn)$ comparisons in expectation. \\ \newline
+\textbf{(b) Conclude using Yao’s technique to show that every comparison-based Las Vegas algorithm for this problem requires $\Omega(nlogn)$ comparisons.} \\ \newline
+Answer: Let A be a correct deterministic comparison based algorithm that solves element uniqueness problem, and a is a comparison based Las Vegas algorithm for this problem, let I be an input and $\lambda$ be an input distribution. If we want to show that every comparison based Las Vegas algorithm for this problem requires $\Omega(nlogn)$ comparisons, it means the least cost Las Vegas algorithm (over the worst input) to solve this problem would also require $\Omega(nlogn)$ comparisons. If we write this as a formula:
+\begin{flalign*}
+&min_a \, max_I \, E[a(I)] \geq nlogn \\
+= &min_a \, max_{\lambda} \, E_{\lambda}[a(\lambda)] \\ 
+\end{flalign*}
+From strong LP duality we have, 
+\begin{flalign*}
+&min_a \, max_{\lambda} \, E_{\lambda}[a(\lambda)] \\ 
+= &max_{\lambda} \, min_a \, E_{\lambda}[a(\lambda)] \\
+= &max_{\lambda} \, min_A \, E_{\lambda}[A(\lambda)] \\
+\end{flalign*}
+The last statement is the expected number of comparisons of the least cost deterministic comparison based algorithm for this problem over input distribution $\lambda$. We already showed that this is $\Omega(nlogn)$ in step a. And by the equalities above, we can say that if there exists an input distribution such that every deterministic algorithm requires at least nlogn comparisons, then every las vegas algorithm also require at least nlogn comparisons.    
 \end{document}
