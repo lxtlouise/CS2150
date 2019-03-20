@@ -1,5 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 \title{Assignment 23}
 \author{Xiaoting Li (xil139) \\
@@ -22,6 +24,8 @@ Deniz Unal (des204)}
 \textbf{(g)} This one is logically consistent with the above information.\\ \newline
 \textbf{(h)} This one is logically consistent with the above information.\\ \newline
 \textbf{(i)} This one is logically consistent with the above information.\\ \newline
-\textbf{37. Consider the element uniqueness problem. In this problem the input is $n$ real numbers $x_1,..., x_n$, and the problem is to determine whether there exists an $i$ and a $j$ such that $i\neq j$ and $x_i = x_j$.}
+\textbf{37. Consider the element uniqueness problem. In this problem the input is $n$ real numbers $x_1,..., x_n$, and the problem is to determine whether there exists an $i$ and a $j$ such that $i\neq j$ and $x_i = x_j$.}\\\newline
+\textbf{(a) Give an input distribution such every comparison-based deterministic correct algorithm requires $\Omega(nlogn)$ comparisons in expectation.} \\ \newline
+Answer: If the input distribution is uniform distribution, then every comparison-based deterministic correct algorithm requires $\Omega(nlogn)$ comparisons in expectation. If the input distribution is uniform distribution, we have the average case of number of comparison as at least $\floor{log_2n!}$. We can use recursive call tree to prove that the average depth of the tree is at least $\floor{log_2n!}$. If the tree is balanced, then it's straightforward that the average height is $\floor{log_2n!}$. If it is unbalanced, we can modify the tree and also get the average depth as at least $\floor{log_2n!}$. So we have $\Omega(nlogn)$ comparisons in expectation.
 
 \end{document}
