@@ -23,7 +23,19 @@ o(nlogn) \geq log(0.01 * n!) \\
 \end{flalign*}
 We know that $log(n!) = \Theta(nlogn)$ so, the inequality above can't be correct. Then, our assumption that $A$ has being probability $\geq$ 1 also can't be correct. We can say that the probability of $A$ being correct is less than 1 \\ \newline
 \textbf{(b) Show if there is a distribution of the input on which no deterministic algorithm with running time $A(n)$ is correct with probability > 1 percent, then there is no Monte Carlo algorithm with running time $A(n)$ that can be correct with probability > 1 percent.} \\\newline
+Answer:  Let $A$ be a correct deterministic algorithm that solves the jug problem, and $a$ is a Monte Carlo algorithm for this problem, let $I$ be an input and $\lambda$ be an input distribution. if the table entry $T(A, I)$ denotes whether $A$ is correct on input I or not, the expected value for algorithm $A$ on input $I$ will be the probability of $A$ being correct on input $I$. We want to show if $\forall A \exists \lambda E[A(\lambda)] < 0.01$ then $\forall a  \exists \lambda E[a(\lambda)]$. To prove this, we need to show that $max_a min_I E[a(I)] \leq min_{\lambda} max_A E[A(\lambda)].$
+\begin{flalign*}
+&max_a min_I E[a(I)] \\
+= &max_a min_\lambda E[a(\lambda)] \\
+\end{flalign*}
+Because we can put all probability on the input that minimizes the probability of being correct. And then from strong LP duality we have: \\
+\begin{flalign*}
+= &max_a min_\lambda E[a(\lambda)] \\
+= & min_\lambda max_a E[a(\lambda)] \\
+\leq &min_\lambda max_A E[A(\lambda)] \\
+\end{flalign*}
 \textbf{(c)Conclude that any Monte Carlo algorithm for this jug problem must have time complexity $\Omega(nlogn)$.} \\ \newline
+
 \textbf{39. Consider the following online problem. You given a sequence of bits $b_1, ... , b_n$ over time. Each bit is in an envelope. You first see the envelope for $b_1$, then the envelope for $b_2$, .... When you get the $i_{th}$ envelope, you can either look inside to see the bit, or destroy the envelope (in which case you will never know what the bit is). You know a priori that at least $n/2 + 1$ of the bits are 1. You goal is to find an envelope containing a 1 bit. You want to open as few envelopes as possible.} \\ \newline 
 \textbf{(a) Give a deterministic algorithm that will open at most $n/2 + O(1)$ envelopes.} \\ \newline
 Answer: Each time when we get an envelope, we open the envelope to check the bit inside. Since there is at least $n/2 + 1$ of the bits are 1, using this brute-force way, the worst case is that we will see bit 1 opening envelope $n/2 + 1$ times. So this deterministic algorithm will open at most $n/2 + O(1)$.\\ \newline
