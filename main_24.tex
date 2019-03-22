@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Assignment 24}
+\author{Xiaoting Li (xil139) \\
+Ziyu Zhang (ziz41) \\
+Deniz Unal (des204)}
+\date{March 22 2019}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{38 The purpose of this problem is to develop a version of Yao’s technique for Monte Carlo randomized algorithms, within the context of the red and blue jug problem from problem 8-4 in the CLRS text. Assume that if you sorted the jugs by volume, that each permutation is equally likely.} \\ \newline
+\textbf{(a) Show that if a deterministic algorithm $A$ always stops in $o(nlogn)$ steps, then the probability that $A$ is correct for large $n$ is less than 1 percent.} \\ \newline
+Answer: We assume that when we sorted the jugs by volume, There are $n!$ permutations that are equally likely. Each of the n! permutations on n elements must appear as one of the leaves of the decision tree for the comparison based sorting algorithm to sort properly. If we call the maximum number of comparisons in a sorting algorithm $x$. The maximum height of the decison tree is $x$. So, it has at most $2^x$ leaves. We assume that algortihm $A$ has a probability of being correct $\geq 0.01$. Then the algorithm makes $< nlogn$ comparisons for $1\%$ of the all equally likely permutations of n. If $A$ is correct then the following inequality should hold: \\
+\begin{flalign*}
+2^{o(nlogn)} \geq 0.01 * n! \\
+\end{flalign*}
+If we take the log of both sides we get \\ 
+\begin{flalign*}
+o(nlogn) \geq log(0.01 * n!) \\
+\end{flalign*}
+We know that $log(n!) = \Theta(nlogn)$ so, the inequality above can't be correct. Then, our assumption that $A$ has being probability $\geq$ 1 also can't be correct. We can say that the probability of $A$ being correct is less than 1. \\ \newline
+\textbf{(b) Show if there is a distribution of the input on which no deterministic algorithm with running time $A(n)$ is correct with probability > 1, then there is no Monte Carlo algorithm with running time $A(n)$ that can be correct with probability > 1 percent.} \\\newline
+Answer:  Let $A$ be a correct deterministic algorithm that solves the jug problem, and $a$ is a Monte Carlo algorithm for this problem, let $I$ be an input and $\lambda$ be an input distribution. if the table entry $T(A, I)$ denotes whether $A$ is correct on input I or not, the expected value for algorithm $A$ on input $I$ will be the probability of $A$ being correct on input $I$. We want to show if $\forall A \exists \lambda E[A(\lambda)] < 0.01$ then $\forall a  \exists \lambda E[a(\lambda)]$. To prove this, we need to show that $max_a min_I E[a(I)] \leq min_{\lambda} max_A E[A(\lambda)].$
+\begin{flalign*}
+&max_a min_I E[a(I)] \\
+= &max_a min_\lambda E[a(\lambda)] \\
+\end{flalign*}
+Because we can put all probability on the input that minimizes the probability of being correct. And then from strong LP duality we have: \\
+\begin{flalign*}
+= &max_a min_\lambda E[a(\lambda)] \\
+= & min_\lambda max_a E[a(\lambda)] \\
+\leq &min_\lambda max_A E[A(\lambda)] \\
+\end{flalign*}
+\textbf{(c)Conclude that any Monte Carlo algorithm for this jug problem must have time complexity $\Omega(nlogn)$.} \\ \newline
+Answer: We can prove any Monte Carlo algorithm for this jug problem must have time complexity of $\Omega(nlogn)$ using similar way of Yao's technique. Let $A$ be correct deterministic algorithm, $a$ be Monte Carlo algorithm, $I$ be input, and $d$ be the input distribution. Similar to Yao's technique, we have 
+\begin{flalign*}
+&min_{a}max_{I}E_{d}E[d(I)] \\
+&min_{a}max_{d}E_{a,d}E[a(d)] \\
+&\geq max_{d}min_{a}E_{a,d}[a(d)]\\
+&=max_{d}min_{A}E_{d}[A(d)]
+\end{flalign*}
+Using comparison based tree, we know that the number of comparison of $A$ is the height of the tree. And there are at least $n!$ leaves of the tree. So we know that \begin{flalign*}
+max_{d}min_{A}E_{d}[A(d)] \geq nlogn
+\end{flalign*}
+Based on the inequality we have above, we can conclude that any Monte Carlo algorithm for this jug problem must have time complexity $\Omega(nlogn)$. \\ \newline
+\textbf{39. Consider the following online problem. You given a sequence of bits $b_1, ... , b_n$ over time. Each bit is in an envelope. You first see the envelope for $b_1$, then the envelope for $b_2$, .... When you get the $i_{th}$ envelope, you can either look inside to see the bit, or destroy the envelope (in which case you will never know what the bit is). You know a priori that at least $n/2 + 1$ of the bits are 1. You goal is to find an envelope containing a 1 bit. You want to open as few envelopes as possible.} \\ \newline 
+\textbf{(a) Give a deterministic algorithm that will open at most $n/2 + O(1)$ envelopes.} \\ \newline
+Answer: Each time when we get an envelope, we open the envelope to check the bit inside. Since there is at least $n/2 + 1$ of the bits are 1, using this brute-force way, the worst case is that we will see bit 1 opening envelope $n/2 + 1$ times. So this deterministic algorithm will open at most $n/2 + O(1)$.\\ \newline
+\textbf{(b) Give an adversarial strategy to show that every deterministic algorithm must open at least $n/2 - O(1)$ envelopes.} \\ \newline
+Answer: Given an adversarial strategy that says open the envelope every time that the algorithm asks whether to open the envelope, then every deterministic algorithm must open at least $n/2 - O(1)$ envelopes. \\ \newline
+\textbf{(c) Assume that each of the n! permutations of the inputs is equally likely. Show that there is a deterministic algorithm where the expected number of envelopes that is opens is $O(1)$.} \\ \newline
+Answer: From the hint, we know that this is related with Bernoulli trial. The probability of getting 1 bit is at least $p = \frac{n/2}{n}= 1/2$. Let $Z$ be the number of times we need to open envelopes to get a bit 1. Then the expected number of envelopes that is opened is $E[Z] = 1/p = 2 = O(1)$. \\\newline
+\textbf{(d) Give a Monte Carlo algorithm that opens $O(logn)$ envelopes and has probability of error $\leq 1/n$. Show that the probability of error is this small.} \\ \newline
+Answer: The algorithm is we only open the envelope when it is the $i^{th}$ envelope and $i = \frac{n}{2^k}, k = 1, 2 ... log(n)$. So we opens $O(logn)$ to see bit 1. The probability of the algorithm is correct is $\pi_{i=1}^{i=log(n)}Prob$(1 on $i)Prob(not$ 1 on $1, 2, ... i-1$), which is larger than $(n-1)/n$. And the probability of error equals to 1 - probability of correct, which is $\leq 1/n$. \\\newline
+\textbf{(e) Show using the version of Yao’s technique for Monte Carlo algorithms that you developed in the last homework assignment to show that every Monte Carlo algorithm must open $\Omega(logn)$ envelopes if it is to be incorrect with probability $\leq 1/n$.} \\ \newline
+\textbf{(f) Give a Las Vegas algorithm where the expected number of opened envelopes is $O(n^{1/2})$.}\\ \newline
+Answer: Take some random guesses for the first half of the envelope. If cannot find bit 1, then try the second half. Repeat this until we find bit 1. Since there are at least $n/2 + 1$ of the bits are 1. Based on the analysis of birthday paradox, we know that to open at least $\sqrt{n} + 1$ envelopes which don't have bit 1(like finding two persons who have the same birthday, we need to find two envelopes that have bit 1). So we must open  $O(n^{1/2})$.
+
+
+\end{document}
