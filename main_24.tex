@@ -20,9 +20,12 @@ Answer: Each time when we get an envelope, we open the envelope to check the bit
 \textbf{(b) Give an adversarial strategy to show that every deterministic algorithm must open at least $n/2 - O(1)$ envelopes.} \\ \newline
 Answer: Given an adversarial strategy that says open the envelope every time that the algorithm asks whether to open the envelope, then every deterministic algorithm must open at least $n/2 - O(1)$ envelopes. \\ \newline
 \textbf{(c) Assume that each of the n! permutations of the inputs is equally likely. Show that there is a deterministic algorithm where the expected number of envelopes that is opens is $O(1)$.} \\ \newline
+Answer: From the hint, we know that this is related with Bernoulli trial. The probability of getting 1 bit is at least $p = \frac{n/2}{n}= 1/2$. Let $Z$ be the number of times we need to open envelopes to get a bit 1. Then the expected number of envelopes that is opened is $E[Z] = 1/p = 2 = O(1)$. \\\newline
 \textbf{(d) Give a Monte Carlo algorithm that opens $O(logn)$ envelopes and has probability of error $\leq 1/n$. Show that the probability of error is this small.} \\ \newline
+Answer: The algorithm is we only open the envelope when it is the $i^{th}$ envelope and $i = \frac{n}{2^k}, k = 1, 2 ... log(n)$. So we opens $O(logn)$ to see bit 1. The probability of the algorithm is correct is $\pi_{i=1}^{i=log(n)}Prob$(1 on $i)Prob(not$ 1 on $1, 2, ... i-1$), which is larger than $(n-1)/n$. And the probability of error equals to 1 - probability of correct, which is $\leq 1/n$. \\\newline
 \textbf{(e) Show using the version of Yao’s technique for Monte Carlo algorithms that you developed in the last homework assignment to show that every Monte Carlo algorithm must open $\Omega(logn)$ envelopes if it is to be incorrect with probability $\leq 1/n$.} \\ \newline
-\textbf{(f) Give a Las Vegas algorithm where the expected number of opened envelopes is $O(n^{1/2})$.}
+\textbf{(f) Give a Las Vegas algorithm where the expected number of opened envelopes is $O(n^{1/2})$.}\\ \newline
+Answer: Take some random guesses for the first half of the envelope. If cannot find bit 1, then try the second half. Repeat this until we find bit 1. Since there are at least $n/2 + 1$ of the bits are 1. Based on the analysis of birthday paradox, we know that to open at least $\sqrt{n} + 1$ envelopes which don't have bit 1(like finding two persons who have the same birthday, we need to find two envelopes that have bit 1). So we must open  $O(n^{1/2})$.
 
 
 \end{document}
