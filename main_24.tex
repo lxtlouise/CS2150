@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Assignment 24}
+\author{lxtlouise2014 }
+\date{March 2019}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{38 The purpose of this problem is to develop a version of Yao’s technique for Monte Carlo randomized algorithms, within the context of the red and blue jug problem from problem 8-4 in the CLRS text. Assume that if you sorted the jugs by volume, that each permutation is equally likely.} \\ \newline
+\textbf{(a) Show that if a deterministic algorithm $A$ always stops in $o(nlogn)$ steps, then the probability that $A$ is correct for large $n$ is less than 1 percent.} \\ \newline
+\textbf{(b) Show if there is a distribution of the input on which no deterministic algorithm with running time $A(n)$ is correct with probability > 1 percent, then there is no Monte Carlo algorithm with running time $A(n)$ that can be correct with probability > 1 percent.} \\\newline
+\textbf{(c)Conclude that any Monte Carlo algorithm for this jug problem must have time complexity $\Omega(nlogn)$.} \\ \newline
+\textbf{39. Consider the following online problem. You given a sequence of bits $b_1, ... , b_n$ over time. Each bit is in an envelope. You first see the envelope for $b_1$, then the envelope for $b_2$, .... When you get the $i_{th}$ envelope, you can either look inside to see the bit, or destroy the envelope (in which case you will never know what the bit is). You know a priori that at least $n/2 + 1$ of the bits are 1. You goal is to find an envelope containing a 1 bit. You want to open as few envelopes as possible.} \\ \newline 
+\textbf{(a) Give a deterministic algorithm that will open at most $n/2 + O(1)$ envelopes.} \\ \newline
+Answer: Each time when we get an envelope, we open the envelope to check the bit inside. Since there is at least $n/2 + 1$ of the bits are 1, using this brute-force way, the worst case is that we will see bit 1 opening envelope $n/2 + 1$ times. So this deterministic algorithm will open at most $n/2 + O(1)$.\\ \newline
+\textbf{(b) Give an adversarial strategy to show that every deterministic algorithm must open at least $n/2 - O(1)$ envelopes.} \\ \newline
+Answer: Given an adversarial strategy that says open the envelope every time that the algorithm asks whether to open the envelope, then every deterministic algorithm must open at least $n/2 - O(1)$ envelopes. \\ \newline
+\textbf{(c) Assume that each of the n! permutations of the inputs is equally likely. Show that there is a deterministic algorithm where the expected number of envelopes that is opens is $O(1)$.} \\ \newline
+\textbf{(d) Give a Monte Carlo algorithm that opens $O(logn)$ envelopes and has probability of error $\leq 1/n$. Show that the probability of error is this small.} \\ \newline
+\textbf{(e) Show using the version of Yao’s technique for Monte Carlo algorithms that you developed in the last homework assignment to show that every Monte Carlo algorithm must open $\Omega(logn)$ envelopes if it is to be incorrect with probability $\leq 1/n$.} \\ \newline
+\textbf{(f) Give a Las Vegas algorithm where the expected number of opened envelopes is $O(n^{1/2})$.}
+
+
+\end{document}
