@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{amsmath}
 
 \title{Assignment 24}
 \author{lxtlouise2014 }
@@ -12,6 +13,15 @@
 \noindent
 \textbf{38 The purpose of this problem is to develop a version of Yao’s technique for Monte Carlo randomized algorithms, within the context of the red and blue jug problem from problem 8-4 in the CLRS text. Assume that if you sorted the jugs by volume, that each permutation is equally likely.} \\ \newline
 \textbf{(a) Show that if a deterministic algorithm $A$ always stops in $o(nlogn)$ steps, then the probability that $A$ is correct for large $n$ is less than 1 percent.} \\ \newline
+Answer: We assume that when we sorted the jugs by volume, There are $n!$ permutations that are equally likely. Each of the n! permutations on n elements must appear as one of the leaves of the decision tree for the comparison based sorting algorithm to sort properly. If we call the maximum number of comparisons in a sorting algorithm $x$. The maximum height of the decison tree is $x$. So, it has at most $2^x$ leaves. We assume that algortihm $A$ has a probability of being correct $\geq 0.01$. Then the algorithm makes $< nlogn$ comparisons for $1\%$ of the all equally likely permutations of n. If $A$ is correct then the following inequality should hold: \\
+\begin{flalign*}
+2^{o(nlogn)} \geq 0.01 * n! \\
+\end{flalign*}
+If we take the log of both sides we get \\ 
+\begin{flalign*}
+o(nlogn) \geq log(0.01 * n!) \\
+\end{flalign*}
+We know that $log(n!) = \Theta(nlogn)$ so, the inequality above can't be correct. Then, our assumption that $A$ has being probability $\geq$ 1 also can't be correct. We can say that the probability of $A$ being correct is less than 1 \\ \newline
 \textbf{(b) Show if there is a distribution of the input on which no deterministic algorithm with running time $A(n)$ is correct with probability > 1 percent, then there is no Monte Carlo algorithm with running time $A(n)$ that can be correct with probability > 1 percent.} \\\newline
 \textbf{(c)Conclude that any Monte Carlo algorithm for this jug problem must have time complexity $\Omega(nlogn)$.} \\ \newline
 \textbf{39. Consider the following online problem. You given a sequence of bits $b_1, ... , b_n$ over time. Each bit is in an envelope. You first see the envelope for $b_1$, then the envelope for $b_2$, .... When you get the $i_{th}$ envelope, you can either look inside to see the bit, or destroy the envelope (in which case you will never know what the bit is). You know a priori that at least $n/2 + 1$ of the bits are 1. You goal is to find an envelope containing a 1 bit. You want to open as few envelopes as possible.} \\ \newline 
