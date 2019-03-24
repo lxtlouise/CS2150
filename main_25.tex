@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Assignment 25}
+\author{Xiaoting Li (xil139) \\
+Ziyu Zhang (ziz41) \\
+Deniz Unal (des204)}
+\date{March 2019}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{41. A problem $Y$ is NP-hard if there exists an NP-complete problem $X$ such that $X$ is polynomial-time reducible to $Y$ . Prove that the following problems are NP-hard. Keep your answers short.}\\ \newline
+\textbf{(a) Prove that the subgraph-isomorphism problem defined in 34.5-1 is NP-hard by reduction from the CLIQUE problem defined earlier in chapter 34.}\\ \newline
+Answer: To prove subgraph-isomorphism problem is NP-hard, we need to reduce CLIQUE to subgraph-isomorphism problem. Assume we have an instance of CLIQUE as $(G, k)$ in which there are $n$ vertices. We also have an instance of subgraph-isomorphism in which $G_1$ is a complete graph that has $k$ vertices and $G_2 = G$. It is easy for us to see that if there is a CLIQUE of size $k$ in $G$, we can find a solution to the subgraph-isomorphism by looking for the intersection between $k$ vertices in $G_1$ and $n$ vertices in $G_2$. If we have $k < n$, then this can be run in poly time. Since CLIQUE is NP-complete, so subgraph-isomorphism is NP-hard.\\ \newline
+\textbf{(b) Prove that the integer programming problem defined in problem 34.5-3 is NP-hard by reduction from 3-CNF-SAT defined earlier in chapter 34.}\\ \newline
+Answer: To prove the integer linear-programming problem, we need to reduce 3-CNF-SAT to the integer linear-programming problem. Let the variables in 3-CNF-SAT be $x_1, x_2, ... x_n$ and the let the variables in integer linear-programming problem be $s_1, s_2, ... s_3$. We restrict $s_1, s_2, ... s_n$ as $0 \leq s_i \leq T$, $T$ is an integer. We denote $0$ as false and any integer $> 0$ as true. For each clause ${x_1, x_2, x_3}$ in the 3-CNF-SAT problem, we have a constraint $s_1 + s_2 + s_3 \leq 0$. In order to have make each clause as true, we need to have at least one of the integer must be set larger than 0. Since 3-CNF-SAT is NP-hard, we can say that integer linear-programming is NP-hard. \\ \newline
+\textbf{(c) Prove that the set partition problem defined in problem 34.5-5 is NP-hard by reduction from the SUBSET SUM problem defined earlier in chapter 34.} \\ \newline
+\textbf{(d) Prove that the longest-simple cycle problem defined in problem 34.5-7 is NP-hard by reduction from the Hamiltonian cycle problem defined earlier in chapter 34.} \\ \newline
+\textbf{(e) Prove that the half-3-CNF problem defined in problem 34.5-8 is NP-hard by reduction from 3-CNF-SAT.} \\ \newline
+\textbf{42. Show that the 3-COLOR problem is NP-hard by reduction from the NP-complete 3-CNF-SAT problem. 3-COLOR is defined in problem 34-3 in the text, which also contains copious hints.}
+
+\end{document}
