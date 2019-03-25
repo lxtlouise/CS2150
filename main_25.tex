@@ -1,4 +1,6 @@
 \documentclass{article}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
 \usepackage[utf8]{inputenc}
 
 \title{Assignment 25}
@@ -25,4 +27,14 @@ Answer: To prove that the longest-simple cycle problem is NP-hard, we need to sh
 Answer: Similar to the previous sub problem, to prove that half-3-CNF is NP-hard we need to show that solving that (new problem in our context) also means solving the 3-CNF-SAT problem (old hard problem in our context). We consider two 3-CNF formulas $\Phi$ and $\Phi'$ where $\Phi$ consists of m clauses and n variables and $\Phi'$ consists of $\Phi$ and m of some formulas (call them X) that are always satisfied, and 2m of some formulas (call them Y) that may or may not be satisfied. If we can have an assignment of the n variables that can satisfy $\Phi$ and an assignment of the variables that does not satisfy the 2m Y formulas , we would also have a satisfiable assignment for $\Phi'$ as 2m of its 4m clauses would always be satisfied (solution for half-3-CNF problem). But if we assume that there is no assignment of n variables that satisfies $\Phi$, If Y is not satisfied we will end up with m clauses satisfied in $\Phi'$ (Only X). If Y is satisfied than we will end up with 3m clauses satisfied in $\Phi'$ (X and Y). The number of satisfied clauses will be either strictly less or strictly more than the half of all clauses of $\Phi'$. So, if we  have a solution for the half-3-CNF problem, we would also have a solution 3-CNF-SAT problem which is NP-Complete. We showed that the half-3-CNF problem is at least as hard as the 3-CNF-SAT problem, so, we can say that half-3-CNF problem is NP-hard. \\Â \newline
 \textbf{42. Show that the 3-COLOR problem is NP-hard by reduction from the NP-complete 3-CNF-SAT problem. 3-COLOR is defined in problem 34-3 in the text, which also contains copious hints.}
 
+\textbf As the problem 34-3, "To prove that 3-COLOR is NP-complete, we use a reduction from 3-CNF-SAT. Given a formula $\phi$ of m clauses on n variables x1 , x2 , . . . , xn , we construct a graph G = (V, E) as follows. The set V consists of a vertex for each variable, a vertex for the negation of each variable, 5 vertices for each clause, and 3 special vertices: TRUE , FALSE , and RED . The edges of the graph are of two types: ¡°literal¡± edges that are independent of the clauses and ¡°clause¡± edges that depend on the clauses. The literal edges form a triangle on the special vertices and also form a triangle on xi , not xi , and RED for i = 1, 2..., n." as shown in figure blow:
+\includegraphics{image1.jpeg}
+\\ \newline
+(1) For the triangle with vertices xi, not xi, and Red, since there is already Red, so xi could be true, and not xi could be false, or xi could be false and not xi could be true. for any truth assignment for $\phi$, there is a 3-coloring of the graph containing just the literal edges (we could have xi be true and not xi be false or the other way around).
+\\ \newline
+(2) Here we agrue that if each of x, y, and z is colored c( TRUE ) or c( FALSE ), then the widget is 3-colorable if and only if at least one of x, y, or z is colored c( TRUE ). As shown in figure blow, if x, y, z all colored with false, then vertex A have to be false, and for the same reason, vertex B have to be false, which contradict with  vertex b is true.
+\\ \newline
+\includegraphics{image2.jpeg}
+\\ \newline
+Given the reason above, for any 3 cnf sat problem, we could use the strategy should above to create the reduction. From (1), we know that each of the variable must be true or false, and its negation must be false or true accordingly, from (2) we know that each of the clause will only be true if we assign one of x, y, z to be true, which means making one of the according clause to be true. Since 3 cnf sat is NP-complete and we found a poly-time way to reduce 3 cnf sat to 3 color, so 3 color is NP-hard.
 \end{document}
