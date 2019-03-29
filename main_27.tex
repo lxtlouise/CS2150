@@ -14,9 +14,14 @@ Deniz Unal (des204)}
 \textbf{(a) Show that if VCD has a polynomial time algorithm, then VCO has a polynomial time algorithm.} \\ \newline
 Answer: We assume that we have a poly time solution for VCD. We can start with $k =$ number of vertices in $G$. Then we would run our algorithm for VCD recursively to see if there's a vertex cover of size $k$. We would decrement $k$ and continue for each value of $k$ until it is 0. The smallest value of $k$ that would output 1 (there is a vertex cover of size $k$) from VCD would be the size of min cardinality vertex cover in $G$. We implement another algorithm based on VCD, whenever it would output a 1, instead, it would return the set of vertices picked (This is stil poly time because VCD is poly time). Then we would just run this algorithm with the size of min cardinality vertex cover found from VCD and so it would return the set of vertices picked. This is the output needed for VCO. So, if we can have a poly time solution for VCD we also have a poly time solution for VCO.\\ \newline
 \textbf{(b) Show that if VCD has a fixed parameter tractable algorithm in the parameter $k$, then VCO has a fixed parameter tractable algorithm in the parameter $\ell$, which is the cardinality of the minimum vertex cover.} \\ \newline
-Answer: \\ \newline
+Answer: \\ \newline
 \textbf{47. Problem 35-1 parts a through e from CLRS text} \\ \newline
-Answer: \\ \newline
+Answer: \\ \newline
 \textbf{48. Problem 35-5 parts a, b and d from the CLRS text} \\ \newline
-Answer: \\ \newline
+\textbf{a.}
+Answer: The optimal makespan is when each job has their own machine. Then the makespan is as large as the greatest processing time since each job has to run consecutive time on a machine. So we can say that $C_{max}^{*} \geq max_{1\leq k \leq n}p_k$.\\ \newline
+\textbf{b.}
+Answer: When all of the jobs can be evenly distributed on all machines, all machines stop working at the same time. The makespan is optimal in this case. If jobs are not evenly distributed, the time it takes for the last machine to stop would increase, which is higher than the optimal makespan. So we can say the optimal span is the average time of the time that it takes for all jobs to finish, which is $C_{max}^{*} \geq \frac{1}{m} \sum_{1\leq k \leq n}p_k$. \\ \newline
+\textbf{c.}
+Answer: Let's say we have $l_k$ which denotes the time when machine $M_k$ finishes one job and can start to work on the next job (when machine is available). The greedy algorithm always assigns the next job to the first available machine. So we have $C_{max} \leq min_{m\in[1, m]}l_{mk} + p_j$, $min_{m\in[1, m]}$, in which $l_{mk}$ is the longest time for a machine to become available and $p_j$ is the time to finish executing job $j$. From (a) and (b), we learn that $C_{max}^{*} \geq max_{1\leq k \leq n}p_k$ and $C_{max}^{*} \geq \frac{1}{m} \sum_{1\leq k \leq n}p_k$, and we have $p_j \leq max_{1\leq k \leq n}p_k$, so we have $C_{max} \leq max_{1\leq k \leq n}p_k + max_{1\leq k \leq n}p_k$. Since both of $max_{1\leq k \leq n}p_k$ and $max_{1\leq k \leq n}p_k$ are smaller or equal to $C_{max}^{*}$, we can say $C_{max} \leq 2\cdot C_{max}^{*}$. It means the greedy algorithm is polynomial-time 2-approximation algorithm.
 \end{document}
