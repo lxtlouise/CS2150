@@ -1,4 +1,7 @@
 \documentclass{article}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 \usepackage[utf8]{inputenc}
 
 \title{Assignment 27}
@@ -16,7 +19,22 @@ Answer: We assume that we have a poly time solution for VCD. We can start with $
 \textbf{(b) Show that if VCD has a fixed parameter tractable algorithm in the parameter $k$, then VCO has a fixed parameter tractable algorithm in the parameter $\ell$, which is the cardinality of the minimum vertex cover.} \\ \newline
 Answer: We can re-formulate VCO as a decision problem and call this $VCO_d$: ``Is there a vertex cover of size less than $\ell$''.  If we have a fixed parameter tractable algorithm for the decision problem VCD in the parameter $k$, we should have fixed parameter tractable algorithm for $VCO_d$ in the parameter $\ell$. Since $VCO_d$ is equivalent to the original optimization problem VCO, we can say that VCO has a fixed parameter tractable algorithm in the parameter $\ell$ if VCD has a fixed parameter tractable algorithm in the parameter $k$.\\ \newline
 \textbf{47. Problem 35-1 parts a through e from CLRS text} \\ \newline
-Answer: \\ \newline
+\textbf{a.}Answer: 
+The partition problem is defined as given numbers of $s_1, s_2, ... s_n$, is there any partition of them that sum of both group is equal to $(\sum_{i=1}^{n} s_i)/2$. Given the input of partition problem, we could build a bin packing with same numbers $s_1, s_2, ... s_n$, with 2 bins of size of $(\sum_{i=1}^{n} s_i)/2$.
+\\ \newline
+\textbf{b.}Answer: 
+If the min of optimal number of bins is less than  $\ceil*{S}$, even if it is  $\ceil*{S} - 1$, the total number of things bins could hold would be less or equal to
+$\ceil*{S} - 1$ which is less than $S$, so it must be at least $\ceil*{S}$.
+\\ \newline
+\textbf{c.}Answer:
+We only focus on $s$ where $s\leq1/2$, since the rest of $s$ will not create bins that is less than half full. Suppose $s_i, s_{i+1} ... s_{i+k}$ are all elements that is less than size of half. When we deal with $s_i$ which is the 1st element that is less than half, we create the 1st bin that is less than half full. However, when we deal with the following elements, we will either put in to the 1st bin that is less than half full, or when 1st bin exceed half full, we create the 2nd bin that is less than half full. For both cases, there would be only one bin that is less than half full.
+\\ \newline
+\textbf{d.}Answer:
+If the number of bins is more than $\ceil*{2S}$, suppose it is $\ceil*{2S}+1$. From c, we know that the at most one of them is less than half full, so the total size stored in bins would be at least $(\ceil*{2S} +1 - 1)/2 + size_{the bin less than half full} $ which will be more than $S$.
+\\ \newline
+\textbf{e.}
+Since number of bins is never more than $\ceil*{2S}$, we know the first-fit is an approximation ratio of 2.
+\\ \newline
 \textbf{48. Problem 35-5 parts a, b and d from the CLRS text} \\ \newline
 \textbf{a.}
 Answer: The optimal makespan is when each job has their own machine. Then the makespan is as large as the greatest processing time since each job has to run consecutive time on a machine. So we can say that $C_{max}^{*} \geq max_{1\leq k \leq n}p_k$.\\ \newline
