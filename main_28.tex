@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Assignment 28}
+\author{Xiaoting Li (xil139) \\
+Ziyu Zhang (ziz41) \\
+Deniz Unal (des204)}
+\date{March 2019}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{49. Problem 35.2-3 from the CLRS text.} \\ \newline
+Answer: From the problem, we learn that at each step, we need to  identify the vertex u that is not on the cycle but whose distance to any vertex on the cycle is minimum. This is similar to finding minimum spanning tree using Prim's Algorithm. In order to prove that this heuristic returns a tour whose total cost is not more than twice the cost of an optimal tour, we set the lower bound as minimum spanning tree. And we need to prove $A(I) \leq 2\cdot LB(I) = 2\cdot MST(I)$. Assume that we have $i$ vertices of current cycle. The cost of the algorithm is $C_{i}$. And assume we have $C_{i} \leq 2 \cdot MST_{i}$, $MST_{i}$ is the cost of minimum spanning tree when there are $i$ vertices. We need to show that for $i+1$, we also have $C_{i+1} \leq 2 \cdot MST_{i+1}$. Let's say for $i+1$, the nearest vertex to $v$ is $u$, $w(v, u)$ is the min weight edge. Using Prim's algorithm, we learn that $MST_{i+1} = MST_{i} + w(v, u)$. Assume the vertex after $v$ is $w$. In order to insert $v$ using the heuristic algorithm, we need to remove $w(v, w)$ and add $w(v, u)$ and $w(u, w)$. So we have $C_{i+1} = C{i} - w(v,w) + w(v, u) + w(u, w)$. Based on triangle inequality, we have $w(v, u) + w(v, w) > w(u, w)$. So we have $C_{i+1} \leq C_{i} + 2\cdot w(v,u) \leq 2\cdot MST_{i} + 2\cdot w(v,u) = 2\cdot MST_{i+1}$. So we can conclude that this heuristic returns a tour whose total cost is not more than twice the cost of an optimal tour.\\ \newline
+\textbf{50. Problem 35.2-4 from the CLRS text.}\\ \newline
+Answer: \\ \newline
+\textbf{51.(a) Problem 35.1-5 from the CLRS text} \\ \newline
+Answer: \\ \newline
+\textbf{(b) Problem 35.2-2 from the CLRS text} \\ \newline
+Answer: \\ \newline
+\textbf{(c) Prove that if there is a polynomial time approximation algorithm for the maximum clique problem that has approximation ratio 1000 then there is a polynomial time approximation algorithm with approximation ratio 1.000000001. This is actually a slightly easier problem than problem 35-2 part b in the CLRS text, which I suggest that you look at for inspiration. Note that in some sense this can be viewed as a gap reduction.}\\ \newline
+Answer: 
+
+\end{document}
