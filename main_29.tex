@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+
+\title{Assignment 29}
+\author{lxtlouise2014 }
+\date{April 2019}
+
+\begin{document}
+
+\maketitle
+\noindent
+\textbf{52. Consider the following problem. The input is a graph $G = (V, E)$. Feasible solutions are subsets $S$ of the vertices $V$. The objective is to maximize the number of edges with one endpoint in $S$ and one endpoint in $V-S$.} \\ \newline
+\textbf{(a) Give a simple polynomial-time randomized algorithm for this problem and show that it is 2 approximate.} \\ \newline
+Answer: For this problem, we need to find an upper-bound $UB(I)$. We first need to count the number of vertices. Let's say $UB(I)$ is the number of vertices in the graph $G$, and $UB(I) = |V|$. We then need to flip a fair coin for each of the vertex. If we get head, we set $x_v = 1$ and put this vertex in $S$. Else, we set $x_v = 0$ and put this vertex in $V - S$. In this way we get a randomized algorithm. And we have $E[A(I)] = \sum_{v=1}^{|V|}E[x_v] \leq \sum_{v=1}^{|V|}Prob[x_v = 1] = \frac{1}{2}UB(I)$. So we get a polynomial-time randomized algorithm and it is 2 approximate.\\ \newline
+\textbf{(b) Develop a deterministic polynomial-time 2-approximation algorithm for this problem using the method of conditional expectations, which considers the vertices one by one, but instead of flipping a coin for each vertex v, puts v in the bipartition that would maximize the expected number of edges in the cut if coin flips w} \\ \newline
+Answer: To develop a deterministic polynomial-time 2-approximation algorithm for this problem, we need to use conditional expectations. Let's say $k$ is the number of vertices in $S$. We first calculate both $E[k|x = 1]$ and $E[k|x=0]$. Then we set $E[k] = max(E[k|x = 1], E[k|x=0])$ to convert the randomized algorithm in (a) to a deterministic polynomial-time a-approximation algorithm for this problem. \\ \newline
+\textbf{(c) Give a simple greedy algorithm that ends up implementing this policy.} \\ \newline
+Answer: We start from two arbitrary set $S$ and $(V - S)$. If there exists a vertex in one set and moving this vertex to other set can increase the number of edges in the bipartition, then we move this vertex. We repeat doing this until there is no such vertex. At this time, we get the solution $S$. Since in each iteration, the number of edges that we can increase is at least one, the upper bound of the number of such edges is $|E|$. So we know that this greedy algorithm will stop after at most $|E|$ iterations.\\ \newline
+\textbf{(d) Prove that this greedy algorithm has approximation ratio at most 2.} \\ \newline
+Answer: Let's denote $C$ as the maximum number of edges we get using the greedy algorithm. And when the greedy algorithm terminates, we have $d(v)$ as the number of degrees of each vertex $v$ in the graph $G$, $v\in V$. We have $d_I(v)$ as the number of edges that connects $v$ with those edges that in the same subset as $v$. We have $d_O(v)$ as the number of edges that connects $v$ with those vertices in the other set. We can easily tell that $d(v) = d_I(v) + d_O(v)$ and $d_I(v) \leq d_O(v)$. If $d_I(v) \geq d_O(v)$, then the greedy algorithm won't terminate and instead will keep moving vertices from one set to the other set. The number of edges in the optimal solution should be at most $|E|$. Since $|E| = \frac{1}{2}\sum d(v)$, so we have 
+$$OPT(I) \leq |E| = \frac{1}{2}\sum d(v) = \frac{1}{2}\sum [d_I(v) + d_O(v)]$$\\
+$$\leq \frac{1}{2}\sum [d_O(v) + d_O(v)] = \sum d_O(v) = 2C$$
+We can tell that the number of edges we get using the greedy algorithm is at most half of the optimal solution. So we prove that this greedy algorithm has approximation ratio at most 2. \\ \newline
+\textbf{53. Consider the MAX-SAT problem, see \url{https://en.wikipedia.org/wiki/Maximum_ satisfiability_problem}. Recall that flipping a fair coin for the setting of each variable gives a (1/2)-approximate solution (or a 2-approximation, depending on which definition you use). Our goal in this problem is to get a better approximation.} \\ \newline
+\textbf{(a) Given an integer linear programming formulation of MAX-SAT.} \\ \newline
+\textbf{(b) Let $x_v^*$ be an optimal solution to the relaxed (rational) linear program. Show that setting the variable $v$ to 1 with probability $x_v^*$, and to 0 otherwise (independent of the setting of the other variables) yields $a(1 - \frac{1}{e})$ - approximation in expectation. }
+
+\end{document}
