@@ -31,10 +31,19 @@ Answer: Let us have a binary variable $x_v$ for all variables $v$ in the MAX-SAT
 \begin{flalign*}
 &max \sum y_c \qquad \text{s.t.} \\
 &\forall v \,\, \forall c \, \sum x_v \,\, + \sum (1 - x_v) \geq y_c \\
-& x_v \in \{0, 1\} \\
-& y_c \in \{0, 1\} \\
+&\forall v \,\, x_v \in \{0, 1\} \\
+&\forall c \,\, y_c \in \{0, 1\} \\
 \end{flalign*}
 \\ \newline
-\textbf{(b) Let $x_v^*$ be an optimal solution to the relaxed (rational) linear program. Show that setting the variable $v$ to 1 with probability $x_v^*$, and to 0 otherwise (independent of the setting of the other variables) yields $a(1 - \frac{1}{e})$ - approximation in expectation. }
+\textbf{(b) Let $x_v^*$ be an optimal solution to the relaxed (rational) linear program. Show that setting the variable $v$ to 1 with probability $x_v^*$, and to 0 otherwise (independent of the setting of the other variables) yields a $(1 - \frac{1}{e})$ - approximation in expectation. } \\ \newline
+Answer: First we relax the integer linear program we described in the previous sub-problem: \\
+\begin{flalign*}
+&max \sum y_c \qquad \text{s.t.} \\
+&\forall v \,\, \forall c \, \sum x_v \,\, + \sum (1 - x_v) \geq y_c \\
+&\forall v \,\, 0 \leq x_v \leq 1 \\
+&\forall c \,\, 0 \leq y_c \leq 1 \\
+\end{flalign*}
+Assume $c$ is a clause of combinations of or statements of $|c|$ variables. So, $c$ is not satisfied if and only if all of the variables are assigned 0. Then we can say the probability of $c$ is satisfied is $1 - \prod (1 - {x_v}^*)$ as $v$ is set to 1 with probability $x_v^*$. From the inequality of arithmetic and geometric means we have: $1 - \prod (1 - {x_v}^*) \geq 1 - (\sum (1 - x_v^*) / |c|)^{|c|}$. Since we know that $\sum x_v^* \geq y_c^*$ from the linear program, we can say $1 - (1 - \sum x_v^* / |c|)^{|c|} \geq 1 - (1 - y_c^* / |c|)^{|c|}$. Since $1 - (1 - y_c^* / |c|)^{|c|}$ is a concave function of $y_c$ on interval [0, 1]. Then, $1 - (1 - y_c^* / |c|)^{|c|} \geq (1 - (1 - 1 /|c|)^{|c|}) * y_c^*$. So, we can say this is a $(1 - (1 - 1 / |c|)^{|c|})$ approximate algorithm.
+
 
 \end{document}
