@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{url}
+\usepackage{amsmath}
 
 \title{Assignment 29}
 \author{Xiaoting Li (xil139) \\
@@ -26,6 +27,14 @@ $$\leq \frac{1}{2}\sum [d_O(v) + d_O(v)] = \sum d_O(v) = 2C$$
 We can tell that the number of edges we get using the greedy algorithm is at most half of the optimal solution. So we prove that this greedy algorithm has approximation ratio at most 2. \\ \newline
 \textbf{53. Consider the MAX-SAT problem, see \url{https://en.wikipedia.org/wiki/Maximum_ satisfiability_problem}. Recall that flipping a fair coin for the setting of each variable gives a (1/2)-approximate solution (or a 2-approximation, depending on which definition you use). Our goal in this problem is to get a better approximation.} \\ \newline
 \textbf{(a) Given an integer linear programming formulation of MAX-SAT.} \\ \newline
+Answer: Let us have a binary variable $x_v$ for all variables $v$ in the MAX-SAT instance. If the variable $v$ is picked, $x_v = 1$, and 0 otherwise. Similarly, we will also have a binary variable $y_c$ for each clause $c$ in the MAX-SAT instance. If the clause $c$ is satisfied, $y_c = 1$, and 0 otherwise. The objective is to maximize the number of clauses that are satisfied. If we write this as an integer linear program we have: \\
+\begin{flalign*}
+&max \sum y_c \qquad \text{s.t.} \\
+&\forall v \,\, \forall c \, \sum x_v \,\, + \sum (1 - x_v) \geq y_c \\
+& x_v \in \{0, 1\} \\
+& y_c \in \{0, 1\} \\
+\end{flalign*}
+\\ \newline
 \textbf{(b) Let $x_v^*$ be an optimal solution to the relaxed (rational) linear program. Show that setting the variable $v$ to 1 with probability $x_v^*$, and to 0 otherwise (independent of the setting of the other variables) yields $a(1 - \frac{1}{e})$ - approximation in expectation. }
 
 \end{document}
