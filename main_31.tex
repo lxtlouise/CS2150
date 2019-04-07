@@ -1,0 +1,21 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Assignment 31}
+\author{Xiaoting Li (xil139) \\
+Ziyu Zhang (ziz41) \\
+Deniz Unal (des204)}
+\date{April 2019}
+
+\begin{document}
+
+\noindent
+\textbf{56. Consider an online or approximation problem where there are only finitely many possible algorithms and finitely many possible inputs. We generalize Yao’s technique to approximation ratios. The correct answer is ”yes” to three of the following four questions, and the correct answer is ”no” for the remaining question. Identify the three questions where the answer is yes, and give a proof that the answer is yes.} \\ \newline
+\textbf{(a) Assume that the problem is a minimization problem} \\ \newline
+Answer: i is correct if the problem is a minimization problem. Let $A$ be a deterministic algorithm, $a$ be a randomized algorithm, $i$ be a generic input, and $I$ be an input distribution. Using Yao's technique, we learn that $min_a max_I E[a(I)] \geq max_I min_A E[A(I)]$. From i, we learn that $E[A(I)]/E[OPT(I)] \geq c$. So we have $min_a max_I E[a(I)]/E[OPT(I)] \geq max_I min_A E[A(I)]/E[OPT(I) \geq c$. So we can say that the expected competitive ratio for every randomized algorithm is at least $c$. \\ \newline
+\textbf{(b) Assume that the problem is a maximization problem} \\ \newline
+\textbf{(c) For extra credit, prove that the correct answer is no for the remaining question. There is a simple example, but that does not mean it is easy to find} \\ \newline
+\textbf{57. Show that the expected competitive ratio for every randomized paging algorithms is
+$\Omega(logk)$.}
+
+\end{document}
