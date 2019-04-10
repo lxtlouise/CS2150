@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Assignment 32}
+\author{Xiaoting Li (xil139) \\
+Ziyu Zhang (ziz41) \\
+Deniz Unal (des204)}
+\date{April 10 2019}
+
+\begin{document}
+\maketitle
+\noindent
+\textbf{58.Consider the paging problem. Consider the following randomized online algorithm. Algorithm Description: Each page P has an associated bit denoting whether the page is FRESH or STALE. If requested page P in fast memory, then P’s associated bit is set to FRESH. If the requested page P is not in fast memory, then a STALE page is selected uniformly at random from the STALE pages in fast memory and ejected, and P’s associated bit is set to FRESH. If the request page P is not in fast memory, and all pages in fast memory are FRESH, then make all pages in fast memory STALE, select a STALE page uniformly at random from the STALE pages in fast memory to evict, and P associated bit is set to FRESH. \\ \newline Show that this algorithm is O(log k) competitive/approximate using the following strategy (recall k is the size of the fast memory). Partition the input sequence into consecutive subsequences/phases where there are exactly k distinct pages requested in each subsequence/phase. The phase breaks are when all pages in fast memory are made STALE. Let mi be the number of pages requested in phase i that were not requested
+in phase i-1.} \\ \newline
+\textbf{(a) Show that the optimal number of page faults is $\Omega \sum_{i} m_i$} \\ \newline
+Answer: Assume in optimal, there are $p_i$ number of page faults in i stage. Then the total number of page faults would be $P = \sum_{i=1}^{n} p_i$.
+During the 1st phase, the number of page faults $p_1 = k$. During i phase, since there are $m_i$ new page request, so there will be $k+m_i$ page covered during phase i-1 and i, and at least $m_i$ will turn out to be page fault, $p_i-1 + p_i \geq m_i$. By adding this from 2 to n, $2P -p_1-p_n\geq \sum_{i=2}^{n} m_i$, having $p_1 = m_1 = k$: $P \geq (\sum_{i=1}^{n} m_i) /2 + 1/2*p_n \geq (\sum_{i=1}^{n} m_i) /2$ which is $\Omega \sum_{i} m_i$.
+\\ \newline
+\textbf{(b)Show that the expected number of page faults for the randomized algorithm on the page requests in phase i is $O(m_i
+log k)$.} \\ \newline
+Answer: The expected number of page faults for the randomized algorithm on the page requests in phase i is max when the request for new page that is not at the cache comes first, and the request for old page that is at the cache before phase i comes after.
+$E_i = E_i(old)+E_i(new)$, we know that $E_i(new) = m_i$, so we should figure out $E(old)$. The request to j old page will incur page fault if the request is not within the rest of $(k-m_i)-(j-1)$, and page is marked as STALE. So the $E(new_j) = 1-\fraq((k-m_i)-(j-1))/(k-(j-1)) = m_i/(k-j+1)$. 
+\\ \newline So $E_i = E_i(old)+E_i(new) = m_i + E_i(\sum_{j} new_j) = m_i+\sum_{j} \frac{m_i}{k-j+1} \leq m_i + m_i\sum_{j=1}^{k-m_i} \frac{1}{k-j+1} = m_i+m_i\sum_{x = m_i+1} ^{k} \frac {1}{x} \leq m_i+m_i log k = O(m_i log k)$.
+\\ \newline
+So $E =  O(log k\sum_{i} m_i) \leq \Omega (log k * \sum_{i} m_i) = log k * \Omega \sum_{i} m_i = log k * P$,which proves the randomized algorithm is $O(log k)$ competitive/approximate.
+\\ \newline
+\end{document}
