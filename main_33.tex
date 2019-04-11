@@ -1,0 +1,22 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Assignment 33}
+\author{Xiaoting Li (xil139) \\
+Ziyu Zhang (ziz41) \\
+Deniz Unal (des204)}
+\date{April 12 2019}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{59. Consider the following online problem. There are two taxis on a line that initially start at the origin. At positive integer time $t$, a request point $h_t$ on the line arrives. In response, each taxi can move to a different location on the line, or stay put at its current point. The path traveled by at least one of the two taxis much cross $h_t$. The objective is to minimize the total movement of the taxis.} \\ \newline
+\textbf{(a) As a warmup show that if there is a c-competitive algorithm A for this problem, then there is a c-competitive algorithm B that only moves one taxi in response to each request, and that one taxi moves directly from its position to the request.}\\ \newline
+Answer: Let's denote the starting point as $S$, the distance between the starting point and one point $j$ is $d(S, j)$. If from the starting point, two taxis are dispatched in response to the request, then the total cost is $2\sum_{i=1}^n d(S, i) = 2n\cdot d(S, i)$, assume we have $n$ request points. However, if only one taxi is dispatched in response to each request, then the distance between two request points $i$ and $j$ is $2d(S, i) + 2d(S, j) - [d(S, i) + d(S, j) + d(i, j)] = d(S, i) + d(S, j) - d(i, j)$. So for $n$ requesting points, the total distance for one taxi is $(n-1)\cdot [d(S, i) + d(S, j) - d(i, j)] \leq 2n\cdot d(S, i)$. So if there is a c-competitive algorithm A for this problem, then there is a c-competitive algorithm B that only moves one taxi in response to each request, and that one taxi moves directly from its position to the request.\\ \newline
+\textbf{(b) Give an adversarial strategy to show that the competitive ratio of every deterministic algorithm is at least 2.} \\ \newline
+\textbf{(c) Consider the following algorithm A. If both taxis are to the left of $h_t$, then a rightmost taxi moves to $h_t$. If both taxis are to the right of $h_t$, then a leftmost taxi moves to $h_t$. If $h_t$ is between the two taxis, then both taxis move toward $h_t$ at the same rate until one of the taxis reaches $h_t$, at which point both taxis stop moving. Show that this algorithm is 2-competitive using the following potential function: $\Phi$ = twice the distance between the leftmost taxi for A and the leftmost taxi for optimal plus twice the distance between the rightmost taxi for A and the rightmost taxi for optimal plus the distance between the leftmost and the rightmost taxis for A. So you need to show that for each request, the cost to A + the change in the potential $\Phi$ is at most 2 times the cost to optimal.
+}
+
+\end{document}
