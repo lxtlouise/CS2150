@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+\title{Assignment 34}
+\author{Xiaoting Li (xil139) \\
+Ziyu Zhang (ziz41) \\
+Deniz Unal (des204)}
+\date{April 15 2019}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{60. Prove Corollary 12.5 from   \url{http://people.cs.pitt.edu/~kirk/cs2150/MultiplicativeWeights/lecture12.pdf}
+} \\ \newline
+Answer: Let $OPT$ be the number of mistakes that the best expert makes. Let $A$ be the number of mistakes that the weighted majority algorithm makes. And let's denote $W = \sum_{i} w_{i}$. Since each time when $i$ is incorrect $w_i = w_i \cdot (1 - \epsilon)$, so we have 
+\begin{flalign*}
+& (1- \epsilon)^{OPT} \leq w_{final} \leq N \cdot (1 - \frac{\epsilon}{2})^A \\
+& -log(1- \epsilon)\cdot OPT \geq -logN  + (-log(1-\frac{\epsilon}{2})) \cdot A \\
+& A \leq 2(1 + \epsilon) \cdot OPT + O(\frac{logN}{2})
+\end{flalign*} 
+Here $OPT$ is $m_i$ if expert $i$ is the best expert. So we have $A \leq 2(1 + \epsilon) \cdot m_i + O(\frac{logN}{2})$.
+\\ \newline
+
+\end{document}
